@@ -15,9 +15,8 @@ function page($navbar, $body) {
                 
             <div class="container mt-3 h-100">
                 $body
-            </div>
-            
-            <div class="container">
+                
+                <div class="container">
               <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
                 <div class="col-md-4 d-flex align-items-center">
                   <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
@@ -32,6 +31,9 @@ function page($navbar, $body) {
                 </ul>
               </footer>
             </div>
+            </div>
+            
+            
             
             
             <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasWithBothOptionsLabel">
