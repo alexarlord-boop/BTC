@@ -27,7 +27,7 @@ HTML;
     return <<<HTML
 
         <nav class="col-md-12 navbar navbar-expand-lg navbar-light bg-light">
-          <a class=" ml-3 navbar-brand badge-pill badge-primary text-light" href="../pages/login_page.php">B2Ts</a>
+          <a class=" ml-3 navbar-brand badge-pill badge-primary text-light" href="../pages/login_page.php">BTC</a>
           
         
           

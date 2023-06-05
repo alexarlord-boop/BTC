@@ -68,6 +68,11 @@ function getPointers()
             'title' => "Teams",
             'lnk' => "all_teams.php",
             'dash' => 'company.php'
+        ),
+        'coordinator' => array(
+            'title' => "Events",
+            'lnk' => "all_events.php",
+            'dash' => 'coordinator.php'
         )
     );
 
