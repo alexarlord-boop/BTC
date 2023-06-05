@@ -11,12 +11,11 @@ $_SESSION['lnk'] = '';
 $navbar = returnNavBar(null);
 $body = "
 <body>
-  
+    
+
+   
         <div class='row'>
-         
-       
-            
-         
+
            <div class='card border-0'>
            <div class='card-body'>
            <h2>This is a Business to Teams connector.</h2>
@@ -35,15 +34,15 @@ $body = "
                     <div class='card-body'>
                         <div class='row d-inline-flex'>
                         <h2 class='text-primary'>Explore as a</h2>
-                        <select class='input h4 w-100 text-center' name='type'>
-                        <option value='0'>Company</option>
-                        <option value='1'>Team</option>
+                        <select id='selector' class='input h4 w-100 text-center' name='type'>
+                            <option  value='0'>Company</option>
+                            <option  value='1'>Team</option>
+                            <option  value='2'>Coordinator</option>
                         </select>
                         </div>
                         
-                        <button type='submit' class='m-5 p-5 btn display-6 btn-outline-primary'>Go!</button>
+                        <button type='submit' id='submit' class='m-5 p-5 btn display-6 btn-outline-primary'>Go!</button>
                     </div>
-                    
                     
                  
               

@@ -9,6 +9,8 @@ if (isset($_POST['type']) ) {
         $_SESSION['userType'] = 'company';
     } else if ($type == '1') {
         $_SESSION['userType'] = 'team';
+    } else if ($type == '2') {
+        $_SESSION['userType'] = 'coordinator';
     }
     header("location:pages/" . $_SESSION['userType'] . ".php");
 
