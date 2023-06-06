@@ -12,12 +12,12 @@ function page($navbar, $body) {
             <body>
                 $navbar
                     
-                <div class="container mt-2 h-75">
+                <div class="container mt-2">
                     $body
                 </div>
                 
                 <!-- FOOTER -->
-                <div class="container">
+                <div class="container align-">
                       <footer class="">
                         <div class="row">
 

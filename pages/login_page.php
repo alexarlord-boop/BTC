@@ -42,7 +42,7 @@ $body = "
                         </select>
                         </div>
                         
-                        <button type='submit' id='submit' class='m-3 p-5 font-weight-bold btn display-6 btn-outline-primary' style='cursor: pointer;'>Go!</button>
+                        <button type='submit' id='submit' class='m-1 p-5  font-weight-bold btn display-6 btn-outline-primary' style='cursor: pointer;'>Go!</button>
                     </div>
                  
               
