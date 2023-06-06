@@ -33,9 +33,9 @@ $body = "
            <div class='col-12 text-center mt-5'>
                  <form class='form-group col' method='post' action='../login_process.php'>
                     <div class='card-body'>
-                        <div class='row d-inline-flex'>
+                        <div class='row d-inline-flex justify-content-center'>
                         <h2 class='text-primary'>Explore as a</h2>
-                        <select id='selector' class='input h4 w-100 text-center' name='type'>
+                        <select id='selector' class='input h4 w-50 text-center' name='type'>
                             <option  value='0'>Company</option>
                             <option  value='1'>Team</option>
                             <option  value='2'>Coordinator</option>
