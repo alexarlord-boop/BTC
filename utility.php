@@ -9,7 +9,6 @@ function page($navbar, $body) {
             <!doctype html>
             <html lang="en">
             
-            
             <body>
             $navbar
                 
@@ -42,10 +41,7 @@ function page($navbar, $body) {
               </footer>
             </div>
             </div>
-            
-            
-            
-            
+             
             <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasWithBothOptionsLabel">
               <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
