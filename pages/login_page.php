@@ -17,12 +17,17 @@ $body = "
         <div class='row'>
 
            <div class='card border-0'>
-           <div class='card-body'>
+           <div class='card-body '>
            <h2>We are = <span class='text-primary'>Business</span> + <span class='text-success'>Teams</span> + <span class='text-warning'>Coordinators</span>.</h2>
            <p class='mt-5'></p>
-           <h2>Solve realistic problems.</h2>
-           <h2>Save time on arranging events.</h2>
-           <h2>Search enthusiasts and platforms.</h2>
+           <div class='col-12 flex-wrap justify-content-center'>
+         
+                <h2>Solve realistic problems.</h2>
+               <h2>Save time on arranging events.</h2>
+               <h2>Search enthusiasts and platforms.</h2>
+         
+            
+            </div>
            </div>
            </div>
            <div class='col-12 text-center mt-5'>
@@ -37,9 +42,8 @@ $body = "
                         </select>
                         </div>
                         
-                        <button type='submit' id='submit' class='m-5 p-5 font-weight-bold btn display-6 btn-outline-primary' style='cursor: pointer;'>Go!</button>
+                        <button type='submit' id='submit' class='m-3 p-5 font-weight-bold btn display-6 btn-outline-primary' style='cursor: pointer;'>Go!</button>
                     </div>
-                    
                  
               
                 </form>

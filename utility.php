@@ -13,22 +13,32 @@ function page($navbar, $body) {
             <body>
             $navbar
                 
-            <div class="container mt-3 h-100">
+            <div class="container mt-2">
                 $body
                 
                 <div class="container">
-              <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-                <div class="col-md-4 d-flex align-items-center">
-                  <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+              <footer class="footer d-flex flex-wrap justify-content-between align-items-center py-3 my-2 border-top">
+                
+                <ul class="nav col-md-8 justify-content-center list-unstyled d-flex">
+                  <li class="ms-3"><a class="text-body-secondary" href="#"><i class="fa-brands fa-2x fa-github"></i></a></li>
+                  <li class="ms-3"><a class="text-body-secondary" href="#"><i class="fa-brands fa-2x fa-linkedin"></i></a></li>
+                
+                    <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
                     <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
                   </a>
                   <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Company, Inc</span>
-                </div>
-            
-                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                  <li class="ms-3"><a class="text-body-secondary" href="#"><i class="fa-brands fa-2x fa-github"></i></a></li>
-                  <li class="ms-3"><a class="text-body-secondary" href="#"><i class="fa-brands fa-2x fa-linkedin"></i></a></li>
                 </ul>
+       
+                <div class='col-md-4'>
+                    <ul class='list-group h6 align-items-end mr-5'>
+                        <a class="stretched-link text-secondary" href="#">Art</a>
+                        <a class="stretched-link text-secondary" href="#">Tech</a>
+                        <a class="stretched-link text-secondary" href="#">Health</a>
+                        <a class="stretched-link text-secondary" href="#">Education</a>
+                        <a class="stretched-link text-secondary" href="#">Environment</a>
+                    </ul>
+                </div>
+    
               </footer>
             </div>
             </div>
@@ -60,7 +70,7 @@ function getPointers()
 
     return array(
         'team' => array(
-            'title' => "Companies",
+            'title' => "Problems",
             'lnk' => "all_companies.php",
             'dash' => 'team.php'
         ),
