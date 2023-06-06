@@ -14,9 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Apache, MySQL, and PHP
-        uses: shivammathur/setup-lamp@v1
-
       - name: Install Dependencies
         run: composer install --no-ansi --no-interaction --no-progress --prefer-dist
 
