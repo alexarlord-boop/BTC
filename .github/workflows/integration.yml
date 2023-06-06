@@ -1,18 +1,28 @@
-name: Node Continuous Integration
+name: LAMP CI
 
 on:
   pull_request:
-    branches: [ main ]
-
+    branches:
+      - main
 
 jobs:
-  test_pull_request:
+  build:
+    name: Build and Test
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      - run: npm ci
-      - run: npm test
-      - run: npm run build
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Apache, MySQL, and PHP
+        uses: shivammathur/setup-lamp@v1
+
+      - name: Install Dependencies
+        run: composer install --no-ansi --no-interaction --no-progress --prefer-dist
+
+      - name: Run PHPUnit Tests
+        run: vendor/bin/phpunit --configuration phpunit.xml
+
+      - name: Lint PHP Code
+        run: vendor/bin/phpcs --standard=PSR12 src/
+
