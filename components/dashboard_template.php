@@ -14,7 +14,8 @@ function returnDashboard($title, $pointer, $content)
     $navbar = returnNavBar($pointer);
     $body = <<<HTML
            
-           <h5 class="text-center"><i class="fa fa-1x fa-laptop"></i> $title</h5>
+           
+           <h1 class="display-6 text-center p-3"><i class="fa fa-1x fa-laptop"></i> $title</h1>
            <div class="mt-3">
             $content
            </div>
