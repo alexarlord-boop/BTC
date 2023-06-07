@@ -7,7 +7,7 @@ require "../utility.php";
 
 function getProblemCard($company, $percent, $fond, $platform, $place, $text, $event, $type, $color, $icon ) {
     return <<<HTML
-        <div class="card rounded-4 col-12 col-lg-4 m-5 mb-4" >
+        <div class="card problem rounded-4 col-12 col-lg-4 m-5 mb-4" style="z-index: 0;" >
             <div class="card-body">
             <div class="card-title d-flex justify-content-between m-1 pb-4">
                 <i class="fa fa-3x fa-{$icon} text-{$color} text-left"></i>
