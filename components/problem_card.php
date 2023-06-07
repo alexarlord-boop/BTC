@@ -1,30 +1,35 @@
 <?php
+//
+//include "../components/navbar.php";
+//include "../components/head_template.php";
 
 require "../utility.php";
 
-function getProblemCard($text, $btnTitle, $color, $icon ) {
+function getProblemCard($company, $percent, $fond, $platform, $place, $text, $event, $type, $color, $icon ) {
     return <<<HTML
         <div class="card rounded-4 col-12 col-lg-4 m-5 mb-4" >
             <div class="card-body">
             <div class="card-title d-flex justify-content-between m-1 pb-4">
-                <i class="fa fa-3x fa-{$icon} text-{$color} text-left "></i>
+                <i class="fa fa-3x fa-{$icon} text-{$color} text-left"></i>
                 <div class="justify-content-between flex-column d-flex">                
-                    <p class="fs-6 text-secondary  text-right">Munich, Germany</p>
-                    <p class="fs-6 text-secondary  text-right">Munich Arena</p>
+                    <p class="fs-6 text-secondary  text-right">$place</p>
+                    <p class="fs-6 text-secondary  text-right">$platform</p>
                 </div>
             </div>
             
             <div class="card-text h5">
-                <p class="fs-4 pb-4 text-primary text-right align-text-bottom">HT Hackathon</p>
-                <p class="text-primary"><span class="text-secondary">Prize fond:</span> € 300.000</p>
-                <p class="text-primary"><span class="text-secondary">Win chance:</span> 95% </p>
+                <p class="fs-6 text-primary text-right align-text-bottom">$type</p>
+                <p class="fs-4 text-primary text-right align-text-bottom">$event</p>
+                <p class="h6 fs-8 pb-4 font-weight-light text-primary text-right">by $company</p>
+                <p class="text-primary"><span class="text-secondary">Fund:</span> $fond</p>
+                <p class="text-primary"><span class="text-secondary">Compatibility:</span> $percent% </p>
                 
                 
                 <div class="pt-3">$text</div>
                 
             </div>
             </div>
-            <div class="card-footer bg-transparent border-0"><a href="#" class="btn btn-outline-$color w-100 mt-4">$btnTitle</a></div>
+            <div class="card-footer bg-transparent border-0"><a href="#" class="btn btn-outline-$color w-100 mt-4">Apply</a></div>
         </div>
 HTML;
 
@@ -33,12 +38,10 @@ HTML;
 //$c1 = getProblemCard("Develop a web application for HealthTech consulting company.", "Apply", "primary", "star-of-life");
 //$c2 = getProblemCard("Develop a web application for HealthTech consulting company.", "Apply", "success", "star-of-life");
 //$c3 = getProblemCard("Develop a web application for HealthTech consulting company.", "Apply", "warning", "star-of-life");
-//$c4 = getProblemCard("Develop a web application for HealthTech consulting company.", "Apply", "danger", "star-of-life");
+//$c4 = getProblemCard("HTG LLC",95,"€ 300.000", "Munich Arena", "Munich, Germany", "Develop a web application for HealthTech consulting company.", "Hackathon", "Health Tech", "danger", "star-of-life");
 //$body = <<<HTML
 //    <div class="d-flex flex-wrap justify-content-center">
-//        $c1
-//        $c2
-//        $c3
+//
 //        $c4
 //</div>
 //HTML;
