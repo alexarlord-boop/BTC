@@ -7,7 +7,7 @@ $_SESSION['searchFor'] = $_SESSION['userType'];
 $navbar = returnNavBar(null);
 $body = <<<HTML
    
-    <div class="display-4"><i class="fa  fa-search"></i> Search for the Best Team</div>
+    <div class="display-6 text-center p-3"><i class="fa  fa-search"></i> Search for the Best Team</div>
     
     <table class="table align-middle mt-5 mb-0 bg-white">
         <thead class="bg-light">
