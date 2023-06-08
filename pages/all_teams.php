@@ -5,9 +5,12 @@ require "../utility.php";
 session_start();
 $_SESSION['searchFor'] = $_SESSION['userType'];
 $navbar = returnNavBar(null);
+$title = pageTitle("search", "Best Teams");
+
 $body = <<<HTML
    
-    <div class="display-6 text-center p-3"><i class="fa  fa-search"></i> Search for the Best Team</div>
+    $title
+    
     
     <table class="table align-middle mt-5 mb-0 bg-white">
         <thead class="bg-light">

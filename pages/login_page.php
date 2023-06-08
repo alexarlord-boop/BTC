@@ -9,6 +9,9 @@ $_SESSION['title'] = '';
 $_SESSION['lnk'] = '';
 
 $navbar = returnNavBar(null);
+$title = pageTitle("", "           <h2>We are = <span class='text-primary'>Business</span> + <span class='text-success'>Teams</span> + <span class='text-warning'>Coordinators</span>.</h2>
+");
+
 $body = "
 <body>
     
@@ -18,7 +21,7 @@ $body = "
 
            <div class='card border-0'>
            <div class='card-body '>
-           <h2>We are = <span class='text-primary'>Business</span> + <span class='text-success'>Teams</span> + <span class='text-warning'>Coordinators</span>.</h2>
+            $title
            <p class='mt-5'></p>
            <div class='col-12 flex-wrap justify-content-center'>
          
