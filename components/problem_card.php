@@ -4,8 +4,27 @@
 //include "../components/head_template.php";
 
 require "../utility.php";
+session_start();
+
 
 function getProblemCard($company, $percent, $fond, $platform, $place, $text, $event, $type, $color, $icon ) {
+    $user = $_SESSION['userType'];
+    if ($platform === '---') {
+        if ($user === 'team') {
+            $platform = '<span class="text-danger font-weight-light">place is not set</span>';
+        } else if ($user === 'coordinator') {
+            $platform = '<a href="#" class="text-danger font-weight-light">no place found</a>';
+        }
+    }
+
+    if ($user === 'team') {
+        $action = 'Apply';
+    } else if ($user === 'coordinator') {
+        $action = 'Provide service';
+    }
+
+
+
     return <<<HTML
         <div class="card problem rounded-4 col-12 col-lg-4 m-5 mb-4" style="z-index: 0;" >
             <div class="card-body">
@@ -29,7 +48,7 @@ function getProblemCard($company, $percent, $fond, $platform, $place, $text, $ev
                 
             </div>
             </div>
-            <div class="card-footer bg-transparent border-0"><a href="#" class="btn btn-outline-$color w-100 mt-4">Apply</a></div>
+            <div class="card-footer bg-transparent border-0"><a href="#" class="btn btn-outline-$color w-100 mt-4">$action</a></div>
         </div>
 HTML;
 
