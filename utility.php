@@ -78,6 +78,13 @@ HTML;
 
 }
 
+function pageTitle($icon, $text) {
+    return <<<HTML
+        <h1 class="display-6 text-center mt-4 p-3"><i class="fa fa-$icon"></i> $text</h1>
+HTML;
+
+}
+
 function getPointers()
 {
 
@@ -94,7 +101,7 @@ function getPointers()
         ),
         'coordinator' => array(
             'title' => "Events",
-            'lnk' => "all_events.php",
+            'lnk' => "all_companies.php",
             'dash' => 'coordinator.php'
         )
     );
