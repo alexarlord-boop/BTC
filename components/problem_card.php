@@ -9,12 +9,8 @@ session_start();
 
 function getProblemCard($company, $percent, $fond, $platform, $place, $text, $event, $type, $color, $icon ) {
     $user = $_SESSION['userType'];
-    if ($platform === '---') {
-        if ($user === 'team') {
-            $platform = '<span class="text-danger font-weight-light">place is not set</span>';
-        } else if ($user === 'coordinator') {
-            $platform = '<a href="#" class="text-danger font-weight-light">no place found</a>';
-        }
+    if ($platform === null) {
+        $platform = '<span class="text-danger font-weight-light">place is not set</span>';
     }
 
     if ($user === 'team') {
