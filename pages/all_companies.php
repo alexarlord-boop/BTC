@@ -13,11 +13,16 @@ $title = pageTitle("search", "Realistic Problems");
 if ($_SESSION['userType'] !== 'coordinator') {
     $filters = <<<HTML
         <div class="bg-transparent p-1 rounded-5">
-            <button onclick="searchByKeyword('cloud')" class="bg-white text-bg-light btn btn-outline-primary"><i class="fa fa-cloud"></i></button>
-            <button onclick="searchByKeyword('social')" class="bg-white text-bg-light btn btn-outline-warning"><i class="fa fa-people-group"></i></button>
-            <button onclick="searchByKeyword('clean')" class="bg-white text-bg-light btn btn-outline-success"><i class="fa fa-leaf"></i></button>
-            <button onclick="searchByKeyword('health')" class="bg-white text-bg-light btn btn-outline-danger"><i class="fa fa-star-of-life"></i></button>
+            <button name="filterBtn" onclick="searchByKeyword('cloud')" class="btn btn-outline-primary"><i class="fa fa-cloud"></i></button>
+            <button name="filterBtn" onclick="searchByKeyword('social')" class="btn btn-outline-warning"><i class="fa fa-people-group"></i></button>
+            <button name="filterBtn" onclick="searchByKeyword('clean')" class="btn btn-outline-success"><i class="fa fa-leaf"></i></button>
+            <button name="filterBtn" onclick="searchByKeyword('health')" class="btn btn-outline-danger"><i class="fa fa-star-of-life"></i></button>
         </div>
+
+
+        <script>
+        <!--  filter btns logic -->
+        </script>
 HTML;
 } else { $filters = '';}
 
@@ -34,7 +39,6 @@ $body = <<<HTML
 
    $title
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
     
     function filterCards(value) {
