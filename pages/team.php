@@ -1,46 +1,24 @@
 <?php
 
 require_once "../components/dashboard_template.php";
+require_once "../components/dash_card.php";
 
 $_SESSION['searchFor'] = '';
 $pointer = getPointers()['team'];
 
+$card1 = getDashCard("  Find realistic problems to solve or interesting events to visit.
+                Our system will find the best match for your expectations!",
+"Search settings","success", "search");
+
+$card2 = getDashCard(" Keep track on your performance and impact.
+                Analyse your team activity, keep in touch with facilitators and companies.",
+"Management", "success", "balance-scale");
+
 $content = <<<HTML
     <div class="row flex-wrap justify-content-center">
-        <div class="card col-md-3 col-sm-12 mx-2 my-2">
-            <div class="card-body rounded">
-            <div class="card-title"><i class="fa fa-3x fa-search text-success text-center"></i></div>
-            <div class="card-text">
-                Describe your values: what kind of a team you're looking for? <br>
-                <br>
-                <br>
-                Our system will find the best match for your expectations!
-            </div>
-            <a href="#" class="btn btn-success mt-4">Search settings</a>
-            </div>
-        </div>
-        <div class="card col-md-3 col-sm-12 mx-2 my-2">
-            <div class="card-body rounded">
-            <div class="card-title"><i class="fa fa-3x fa-question text-success text-center"></i></div>
-            <div class="card-text">
-                Set up a real problem, provide technical tasks and choose reward.<br>
-                Publish your company's frustrations and find solutions by enthusiasts around the world.
-            </div>
-            <a href="#" class="btn btn-success mt-4">Create Request</a>
-            </div>
-        </div>
-        <div class="card col-md-3 col-sm-12 mx-2 my-2">
-            <div class="card-body rounded">
-            <div class="card-title"><i class="fa fa-3x fa-balance-scale text-success text-center"></i></div>
-            <div class="card-text">
-                Keep track on your savings, efficiency of the chosen teams and problems solution. <br>
-                <br>
-                <br>
-                A nice tool for monitoring your Projects.
-            </div>
-            <a href="#" class="btn btn-success mt-4">Management</a>
-            </div>
-        </div>
+        $card1
+        $card2
+        
         <div class="m-5"></div>
     </div>
 
