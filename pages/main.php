@@ -9,7 +9,7 @@ $_SESSION['title'] = '';
 $_SESSION['lnk'] = '';
 
 $navbar = returnNavBar(null);
-$title = pageTitle("", "           <h2>We are = <span class='text-primary'>Business</span> + <span class='text-success'>Teams</span> + <span class='text-warning'>Coordinators</span>.</h2>
+$title = pageTitle("", "           <h2>We are = <span class='text-primary'>Business</span> + <span class='text-success'>Teams</span>.</h2>
 ");
 
 $body = "
@@ -41,7 +41,6 @@ $body = "
                         <select id='selector' class='input h4 w-50 text-center' name='type'>
                             <option  value='0'>Company</option>
                             <option  value='1'>Team</option>
-                            <option  value='2'>Coordinator</option>
                         </select>
                         </div>
                         

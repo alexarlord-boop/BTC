@@ -71,7 +71,7 @@ $body = <<<HTML
     }
     </script>
     
-    <div class="col  sticky-top p-2 mt-2 d-flex flex-wrap justify-content-center text-center">
+    <div class="col sticky-top p-2 mt-2 d-flex flex-wrap justify-content-center text-center">
         
         <input class="col-3 bg-white p-1 border-1 rounded-left text-center align-content-center" id="myInput" type="text" placeholder="Search..">
         <button onclick="searchByKeyword('')" class="bg-white btn-secondary text-bg-light border-1 rounded-right mr-2 align-middle"><i class="fa fa-times"></i></button>

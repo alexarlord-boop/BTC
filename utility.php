@@ -1,5 +1,27 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require_once ('PHP-MySQLi-Database-Class-master/MysqliDb.php');
+
+$host = 'localhost:3306';
+$user = 'root';
+$password = '';
+$dbname = 'btcdb';
+
+global $db;
+$db = new MysqliDb ($host, $user, $password, $dbname);
+
+try {
+    $query = $db->get('test'); //will contain an Array of all users;
+//    pre($query);
+} catch (mysqli_sql_exception $e) {
+    // log the exception message, filename and line number
+    echo $e->getMessage();
+    echo $db->getLastError();
+    echo $e;
+}
 function pre($data) {
     print '<pre>' . print_r($data, true) . '</pre>';
 }
@@ -12,7 +34,7 @@ function page($navbar, $body) {
             <body>
                 $navbar
                     
-                <div class="container mt-2">
+                <div class="col-12 mt-2">
                     $body
                 </div>
                 
@@ -99,11 +121,11 @@ function getPointers()
             'lnk' => "all_teams.php",
             'dash' => 'company.php'
         ),
-        'coordinator' => array(
-            'title' => "Events",
-            'lnk' => "all_companies.php",
-            'dash' => 'coordinator.php'
-        )
+//        'coordinator' => array(
+//            'title' => "Events",
+//            'lnk' => "all_companies.php",
+//            'dash' => 'coordinator.php'
+//        )
     );
 
 }

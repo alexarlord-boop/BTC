@@ -27,7 +27,7 @@ HTML;
     return <<<HTML
 
         <nav class="col-md-12 sticky-top navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
-          <a class="navbar-brand ml-3 badge-pill badge-primary text-light" href="../pages/login_page.php">BTC</a>
+          <a class="navbar-brand ml-3 badge-pill badge-primary text-light" href="../pages/main.php">BTC</a>
           
             <div class="m-0 p-0">         
               <a href="../pages/{$_SESSION['lnk']}" class="navbar-brand text-primary" style="cursor: pointer;">{$_SESSION['title']}</a>
@@ -41,7 +41,7 @@ HTML;
 
         <nav aria-label="breadcrumb " style="margin-top: 0px; position: fixed; z-index: 1000;">
           <ol class="breadcrumb bg-white p-2 rounded-5">
-            <li class="breadcrumb-item ml-4"><a href="../pages/login_page.php">main</a></li>
+            <li class="breadcrumb-item ml-4"><a href="../pages/main.php">main</a></li>
             <li class="breadcrumb-item"><a href="../pages/$user.php">$user</a></li>
             {$_SESSION['search_item']}
             
