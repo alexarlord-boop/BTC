@@ -16,11 +16,13 @@ $goToCompany = getMainBtn("all_teams.php", "Teams");
 $goToTeam = getMainBtn("all_companies.php", "Events");
 $body = "
 
+        <img src='../components/anim1.png' height='700' width='700' style='position: absolute; top:-110px; right: 0px; z-index: -1;'/>
+
             $title
-           <div class='card border-0'>
-           <div class='card-body '>
+           <div class='card  bg-transparent border-0'>
+           <div class='card-body'>
            <p class='mt-5'></p>
-           <div class='col-12 flex-wrap justify-content-center'>
+           <div class='col-md-6 offset-md-1 flex-wrap justify-content-center'>
          
                 <h2>Solve realistic problems.</h2>
                <h2>Save time on arranging events.</h2>
