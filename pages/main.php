@@ -2,6 +2,7 @@
 
 include "../components/head_template.php";
 include "../components/navbar.php";
+include "../components/ui.php";
 require "../utility.php";
 session_start();
 //$_SESSION['userType'] = null;
@@ -12,6 +13,8 @@ $navbar = returnNavBar(null);
 $title = pageTitle("", "           <h2>We are = <span class='text-primary'>Business</span> + <span class='text-success'>Teams</span>.</h2>
 ");
 
+$goToCompany = getMainBtn("company.php", "company");
+$goToTeam = getMainBtn("team.php", "team");
 $body = "
 <body>
     
@@ -33,22 +36,11 @@ $body = "
             </div>
            </div>
            </div>
-           <div class='col-12 text-center mt-5'>
-                 <form class='form-group col' method='post' action='../login_process.php'>
-                    <div class='card-body'>
-                        <div class='row d-inline-flex justify-content-center'>
-                        <h2 class='text-primary'>Explore as a</h2>
-                        <select id='selector' class='input h4 w-50 text-center' name='type'>
-                            <option  value='0'>Company</option>
-                            <option  value='1'>Team</option>
-                        </select>
-                        </div>
-                        
-                        <button type='submit' id='submit' class='m-1 p-5  font-weight-bold btn display-6 btn-outline-primary' style='cursor: pointer;'>Go!</button>
-                    </div>
+           <div class='col-6 offset-3  text-center mt-5'>
                  
-              
-                </form>
+                  $goToCompany
+                  $goToTeam
+                  
             </div>
        
      
