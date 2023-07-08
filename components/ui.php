@@ -3,7 +3,7 @@
 function getMainBtn($href, $text) {
     return <<<HTML
 <style>
-button {
+button.main {
  color: #090909;
  width: 150px;
  height: 150px;
@@ -18,14 +18,14 @@ button {
              -6px -6px 12px #ffffff;
 }
 
-button:active {
+button.main:active {
  color: #666;
  box-shadow: inset 4px 4px 12px #c5c5c5,
              inset -4px -4px 12px #ffffff;
 }
 </style>
 
-<button onclick="goTo('{$href}')">
+<button class="main" onclick="goTo('{$href}')">
 $text
 </button>
 
