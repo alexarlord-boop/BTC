@@ -43,7 +43,7 @@ function page($navbar, $body) {
                 <div class="container align-bottom">
                       
                       <footer class="">
-                        <div class="row">
+                       
 
                         <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
                           <p>© 2022 Company, Inc. All rights reserved.</p>
@@ -56,6 +56,9 @@ function page($navbar, $body) {
                             <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg>link</a></li>
                           </ul>
                         </div>
+                        <img src='../components/credits.gif' height='500' width='2000' style='height: 100px; position: relative; bottom: 10px; object-fit: cover; z-index: -1;'/>
+                        
+
                       </footer>
                 </div>
                  
