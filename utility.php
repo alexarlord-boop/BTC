@@ -39,16 +39,21 @@ function page($navbar, $body) {
                 </div>
                 
                 <!-- FOOTER -->
-                <div class="container align-">
+              
+                <div class="container align-bottom">
+                      
                       <footer class="">
                         <div class="row">
 
                         <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
                           <p>© 2022 Company, Inc. All rights reserved.</p>
+                          
+                          <img src='../components/flash.gif' height='100' width='200' style=' z-index: -1;'/>
+
                           <ul class="list-unstyled d-flex">
-                            <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
-                            <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
-                            <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+                            <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg>link</a></li>
+                            <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg>link</a></li>
+                            <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg>link</a></li>
                           </ul>
                         </div>
                       </footer>
