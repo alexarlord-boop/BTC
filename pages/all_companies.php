@@ -8,7 +8,7 @@ require "../components/problem_card.php";
 $user = json_encode($_SESSION['userType']);
 $_SESSION['searchFor'] = $_SESSION['userType'];
 $navbar = returnNavBar(null);
-$title = pageTitle("search", "Realistic Problems");
+$title = pageTitle("search", "Upcoming events");
 
 if ($_SESSION['userType'] !== 'coordinator') {
     $filters = <<<HTML

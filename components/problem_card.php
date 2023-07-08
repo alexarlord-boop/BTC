@@ -13,11 +13,6 @@ function getProblemCard($company, $percent, $fond, $platform, $place, $text, $ev
         $platform = '<span class="text-danger font-weight-light">place is not set</span>';
     }
 
-    if ($user === 'team') {
-        $action = 'Apply';
-    } else if ($user === 'coordinator') {
-        $action = 'Provide service';
-    }
 
 
 
@@ -44,7 +39,7 @@ function getProblemCard($company, $percent, $fond, $platform, $place, $text, $ev
                 
             </div>
             </div>
-            <div class="card-footer bg-transparent border-0"><a href="#" class="btn btn-outline-$color w-100 mt-4">$action</a></div>
+            <div class="card-footer bg-transparent border-0"><a href="#" class="btn btn-outline-$color w-100 mt-4">Apply</a></div>
         </div>
 HTML;
 

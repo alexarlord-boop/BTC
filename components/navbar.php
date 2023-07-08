@@ -39,14 +39,14 @@ HTML;
             
         </nav>
 
-        <nav aria-label="breadcrumb " style="margin-top: 0px; position: fixed; z-index: 1000;">
+       <!-- <nav aria-label="breadcrumb " style="margin-top: 0px; position: fixed; z-index: 1000;">
           <ol class="breadcrumb bg-white p-2 rounded-5">
             <li class="breadcrumb-item ml-4"><a href="../pages/main.php">main</a></li>
             <li class="breadcrumb-item"><a href="../pages/$user.php">$user</a></li>
             {$_SESSION['search_item']}
             
           </ol>
-        </nav>
+        </nav> -->
 HTML;
 
 }

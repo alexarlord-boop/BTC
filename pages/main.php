@@ -10,21 +10,15 @@ $_SESSION['title'] = '';
 $_SESSION['lnk'] = '';
 
 $navbar = returnNavBar(null);
-$title = pageTitle("", "           <h2>We are = <span class='text-primary'>Business</span> + <span class='text-success'>Teams</span>.</h2>
-");
+$title = pageTitle("", "Landing Page");
 
-$goToCompany = getMainBtn("company.php", "company");
-$goToTeam = getMainBtn("team.php", "team");
+$goToCompany = getMainBtn("all_teams.php", "Teams");
+$goToTeam = getMainBtn("all_companies.php", "Events");
 $body = "
-<body>
-    
 
-   
-        <div class='row'>
-
+            $title
            <div class='card border-0'>
            <div class='card-body '>
-            $title
            <p class='mt-5'></p>
            <div class='col-12 flex-wrap justify-content-center'>
          
@@ -42,11 +36,7 @@ $body = "
                   $goToTeam
                   
             </div>
-       
-     
-      
-</div>
-    </body>
+
 ";
 
 
