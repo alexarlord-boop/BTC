@@ -13,7 +13,8 @@ function returnNavBar($pointer) {
 
 
 
-    $user = $_SESSION["userType"];
+//    $user = $_SESSION["userType"];
+    $user = "";
     $_SESSION['search_item'] = '';
     if ($_SESSION['searchFor'] != '') {
         $lnk = getPointers()[$_SESSION['userType']]['lnk'];
