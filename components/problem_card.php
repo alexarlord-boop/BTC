@@ -8,7 +8,6 @@ session_start();
 
 
 function getProblemCard($company, $percent, $fond, $platform, $place, $text, $event, $type, $color, $icon ) {
-    $user = $_SESSION['userType'];
     if ($platform === null) {
         $platform = '<span class="text-danger font-weight-light">place is not set</span>';
     }

@@ -3,7 +3,6 @@ include "../components/navbar.php";
 include "../components/head_template.php";
 require "../utility.php";
 session_start();
-$_SESSION['searchFor'] = $_SESSION['userType'];
 $navbar = returnNavBar(null);
 $title = pageTitle("search", "Teams");
 

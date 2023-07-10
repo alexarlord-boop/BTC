@@ -14,16 +14,16 @@ function returnNavBar($pointer) {
 
 
 //    $user = $_SESSION["userType"];
-    $user = "";
-    $_SESSION['search_item'] = '';
-    if ($_SESSION['searchFor'] != '') {
-        $lnk = getPointers()[$_SESSION['userType']]['lnk'];
-
-        $_SESSION['search_item'] = <<<HTML
-            <li class="breadcrumb-item"><a href="../pages/$lnk">search</a></li>
-HTML;
-
-    }
+//    $user = "";
+//    $_SESSION['search_item'] = '';
+//    if ($_SESSION['searchFor'] != '') {
+//        $lnk = getPointers()[$_SESSION['userType']]['lnk'];
+//
+//        $_SESSION['search_item'] = <<<HTML
+//            <li class="breadcrumb-item"><a href="../pages/$lnk">search</a></li>
+//HTML;
+//
+//    }
 
     return <<<HTML
 
@@ -40,14 +40,7 @@ HTML;
             
         </nav>
 
-       <!-- <nav aria-label="breadcrumb " style="margin-top: 0px; position: fixed; z-index: 1000;">
-          <ol class="breadcrumb bg-white p-2 rounded-5">
-            <li class="breadcrumb-item ml-4"><a href="../pages/main.php">main</a></li>
-            <li class="breadcrumb-item"><a href="../pages/$user.php">$user</a></li>
-            {$_SESSION['search_item']}
-            
-          </ol>
-        </nav> -->
+
 HTML;
 
 }

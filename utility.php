@@ -14,8 +14,9 @@ global $db;
 $db = new MysqliDb ($host, $user, $password, $dbname);
 
 try {
-    $query = $db->get('test'); //will contain an Array of all users;
-//    pre($query);
+    pre('db test request');
+    $query = $db->get('user'); //will contain an Array of all users;
+    pre($query);
 } catch (mysqli_sql_exception $e) {
     // log the exception message, filename and line number
     echo $e->getMessage();
