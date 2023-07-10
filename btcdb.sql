@@ -227,8 +227,8 @@ VALUES ('Ongoing'),
 
 -- Inserting test data into the user table
 INSERT INTO user (name, surname, email, password, registration_date, avatar_img, is_admin)
-VALUES ('John', 'Doe', 'john.doe@example.com', 'password123', NOW(), 'avatar1.jpg', 0),
-       ('Jane', 'Smith', 'jane.smith@example.com', 'password456', NOW(), 'avatar2.jpg', 1);
+VALUES ('John', 'Doe', 'john.doe@example.com', '$2y$10$GmgCeUsxmuBo/GzkEBNwsuGjGyaz8W5Rk1D2oDGdmvXV0Dvob5PRq', NOW(), 'avatar1.jpg', 0),
+       ('Jane', 'Smith', 'jane.smith@example.com', '$2y$10$PARwhyc/eLxg366KmdeveOoeKljmHbzopEFKGkGTeucTAsxG1xgHK', NOW(), 'avatar2.jpg', 1);
 
 
 -- Inserting test data into the user_role table
