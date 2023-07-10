@@ -49,7 +49,6 @@ function page($navbar, $body) {
                         <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
                           <p>© 2022 Company, Inc. All rights reserved.</p>
                           
-                          <img src='../components/flash.gif' height='100' width='200' style=' z-index: -1;'/>
 
                           <ul class="list-unstyled d-flex">
                             <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg>link</a></li>
@@ -69,9 +68,8 @@ function page($navbar, $body) {
                     <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Follow & Support</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                   </div>
-                  <div class="offcanvas-body">
+                  <div class="offcanvas-body h-100">
                      
-                    
                           <div class="col-md-12 mb-5">
                             <form>
                               <h5>Subscribe to our newsletter</h5>
@@ -96,7 +94,10 @@ function page($navbar, $body) {
                             </ul>
                           </div>
                           
+                          
                         </div>
+                        
+                       <img src='../components/flash.gif' class="align-bottom" height='200' width='500' style=' object-fit: fill; z-index: -1;'/>
                   </div>
                 </div>              
                   

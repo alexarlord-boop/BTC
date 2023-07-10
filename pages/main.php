@@ -30,7 +30,7 @@ $body = "
           <source id='src' src='../vid1.mp4' type='video/mp4'>
         </video>-->
         
-                <img src='../components/anim1.png' height='1000' width='1000' style='position: absolute; top:-300px; right: 0px; z-index: -1;'/>
+                <img src='../animations/anim1.png' height='1000' width='1000' style='position: absolute; top:-300px; right: 0px; z-index: -1;'/>
             $title
            <div class='card  bg-transparent border-0'>
            <div class='card-body'>
