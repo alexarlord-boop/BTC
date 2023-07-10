@@ -4,7 +4,7 @@ include "../components/head_template.php";
 include "../components/navbar.php";
 include "../components/ui.php";
 require "../utility.php";
-session_start();
+
 //$_SESSION['userType'] = null;
 $_SESSION['title'] = '';
 $_SESSION['lnk'] = '';

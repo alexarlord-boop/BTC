@@ -14,9 +14,8 @@ global $db;
 $db = new MysqliDb ($host, $user, $password, $dbname);
 
 try {
-    pre('db test request');
     $query = $db->get('user'); //will contain an Array of all users;
-    pre($query);
+//    pre($query); // test query result
 } catch (mysqli_sql_exception $e) {
     // log the exception message, filename and line number
     echo $e->getMessage();
@@ -25,6 +24,18 @@ try {
 }
 function pre($data) {
     print '<pre>' . print_r($data, true) . '</pre>';
+}
+
+function redirect($url)
+{
+    if (headers_sent()) {
+        // If headers have already been sent, use a JavaScript redirect
+        echo '<script>window.location = "' . $url . '";</script>';
+    } else {
+        // If headers have not been sent, use a PHP redirect
+        header('Location: ' . $url);
+        exit;
+    }
 }
 
 function page($navbar, $body) {
@@ -51,12 +62,12 @@ function page($navbar, $body) {
                           
 
                           <ul class="list-unstyled d-flex">
-                            <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg>link</a></li>
-                            <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg>link</a></li>
-                            <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg>link</a></li>
+                            <li class="ms-3"><a class="" href="login.php"><svg class="bi" width="24" height="24"></svg>login</a></li>
+                            <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"></svg>link</a></li>
+                            <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"></svg>link</a></li>
                           </ul>
                         </div>
-                        <img src='../components/credits.gif' height='500' width='2000' style='height: 100px; position: relative; bottom: 10px; object-fit: cover; z-index: -1;'/>
+                        <img src='../animations/credits.gif' height='500' width='2000' style='height: 100px; position: relative; bottom: 10px; object-fit: cover; z-index: -1;'/>
                         
 
                       </footer>
@@ -97,7 +108,7 @@ function page($navbar, $body) {
                           
                         </div>
                         
-                       <img src='../components/flash.gif' class="align-bottom" height='200' width='500' style=' object-fit: fill; z-index: -1;'/>
+                       <img src='../animations/flash.gif' class="align-bottom" height='200' width='500' style=' object-fit: fill; z-index: -1;'/>
                   </div>
                 </div>              
                   
