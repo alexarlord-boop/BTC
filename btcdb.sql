@@ -48,13 +48,13 @@
 CREATE TABLE `user`
 (
     id                INT PRIMARY KEY AUTO_INCREMENT,
-    name              VARCHAR(255),
-    surname           VARCHAR(255),
-    email             VARCHAR(255),
-    password          VARCHAR(255),
-    registration_date TIMESTAMP,
-    avatar_img        VARCHAR(255),
-    is_admin          BIT
+    name              VARCHAR(100) NOT NULL,
+    surname           VARCHAR(100) NOT NULL,
+    email             VARCHAR(100) NOT NULL,
+    password          VARCHAR(60)  NOT NULL,
+    registration_date datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    avatar_img        VARCHAR(100) NOT NULL,
+    is_admin          BIT          NOT NULL DEFAULT 0
 );
 
 CREATE TABLE `user_role`
@@ -67,64 +67,64 @@ CREATE TABLE `user_role`
 CREATE TABLE `role`
 (
     id   INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255)
+    name VARCHAR(60) NOT NULL
 );
 
 CREATE TABLE `business_field`
 (
     id   INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255)
+    name VARCHAR(60) NOT NULL
 );
 
 CREATE TABLE `company_info`
 (
     id                INT PRIMARY KEY AUTO_INCREMENT,
-    name              VARCHAR(255),
-    country           VARCHAR(255),
-    city              VARCHAR(255),
-    business_field_id INT
+    name              VARCHAR(60) NOT NULL,
+    country           VARCHAR(60) NOT NULL,
+    city              VARCHAR(60) NOT NULL,
+    business_field_id INT NOT NULL
 );
 
 CREATE TABLE `member_info`
 (
     id         INT PRIMARY KEY AUTO_INCREMENT,
-    backend    INT,
-    frontend   INT,
-    analytics  INT,
-    management INT,
-    design     INT,
-    db         INT
+    backend    INT NOT NULL DEFAULT 0,
+    frontend   INT NOT NULL DEFAULT 0,
+    analytics  INT NOT NULL DEFAULT 0,
+    management INT NOT NULL DEFAULT 0,
+    design     INT NOT NULL DEFAULT 0,
+    db         INT NOT NULL DEFAULT 0
 );
 
 CREATE TABLE `user_company`
 (
     id              INT PRIMARY KEY AUTO_INCREMENT,
-    user_id         INT,
-    company_info_id INT
+    user_id         INT NOT NULL,
+    company_info_id INT NOT NULL
 );
 
 CREATE TABLE `user_member`
 (
     id             INT PRIMARY KEY AUTO_INCREMENT,
-    user_id        INT,
-    member_info_id INT
+    user_id        INT NOT NULL,
+    member_info_id INT NOT NULL
 );
 
 CREATE TABLE `team`
 (
     id                INT PRIMARY KEY AUTO_INCREMENT,
-    name              VARCHAR(255),
-    organization_date TIMESTAMP,
-    velocity          INT,
-    likes             INT,
-    is_open           BIT
+    name              VARCHAR(100) NOT NULL,
+    organization_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    velocity          INT NOT NULL DEFAULT 0,
+    likes             INT NOT NULL DEFAULT 0,
+    is_open           BIT NOT NULL DEFAULT 1
 );
 
 CREATE TABLE `team_member`
 (
     id        INT PRIMARY KEY AUTO_INCREMENT,
-    team_id   INT,
-    member_id INT
+    team_id   INT NOT NULL,
+    member_id INT NOT NULL
 );
 
 CREATE TABLE `purpose`
@@ -136,19 +136,19 @@ CREATE TABLE `purpose`
 CREATE TABLE `event`
 (
     id                INT PRIMARY KEY AUTO_INCREMENT,
-    name              VARCHAR(255),
-    date              TIMESTAMP,
-    company_id        INT,
-    business_field_id INT,
-    purpose_id        INT,
-    place             VARCHAR(255),
+    name              VARCHAR(100) NOT NULL ,
+    date              TIMESTAMP NOT NULL ,
+    company_id        INT NOT NULL ,
+    business_field_id INT NOT NULL ,
+    purpose_id        INT NOT NULL ,
+    place             VARCHAR(100),
     reward            INT,
-    entrance_lvl      INT,
-    description       VARCHAR(255),
-    status_id         INT,
-    cover_img         VARCHAR(255),
-    duration          VARCHAR(255),
-    amount             INT
+    entrance_lvl      INT NOT NULL ,
+    description       VARCHAR(255) NOT NULL ,
+    status_id         INT NOT NULL ,
+    cover_img         VARCHAR(60),
+    duration          VARCHAR(60) NOT NULL ,
+    amount            INT NOT NULL
 );
 
 CREATE TABLE `status`
@@ -223,7 +223,6 @@ INSERT INTO `status` (name)
 VALUES ('Ongoing'),
        ('Cancelled'),
        ('Finished');
-
 
 
 -- Inserting test data into the user table
