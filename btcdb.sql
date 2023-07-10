@@ -201,23 +201,28 @@ ALTER TABLE `event_teams`
 
 -- Inserting test data into the role table
 INSERT INTO `role` (name)
-VALUES ('Admin'),
-       ('User');
+VALUES ('company'),
+       ('member');
 
 -- Inserting test data into the business_field table
 INSERT INTO `business_field` (name)
-VALUES ('Technology'),
-       ('Finance');
+VALUES ('Consulting'),
+       ('Health Tech'),
+       ('Clean Tech'),
+       ('Social');
 
 -- Inserting test data into the purpose table
 INSERT INTO `purpose` (name)
-VALUES ('Project'),
-       ('Training');
+VALUES ('Internship'),
+       ('Conference'),
+       ('Hackathon'),
+       ('Outsource');
 
 -- Inserting test data into the status table
 INSERT INTO `status` (name)
-VALUES ('Pending'),
-       ('Approved');
+VALUES ('Ongoing'),
+       ('Cancelled'),
+       ('Finished');
 
 
 
@@ -272,8 +277,8 @@ VALUES (1, 1),
 -- Inserting test data into the event table
 INSERT INTO `event` (name, date, company_id, business_field_id, purpose_id, place, reward, entrance_lvl, description,
                      status_id, cover_img, duration, amount)
-VALUES ('Event A', NOW(), 1, 1, 1, 'Venue A', 100, 1, 'Event A description', 1, 'cover1.jpg', '2 hours', 50),
-       ('Event B', NOW(), 2, 2, 2, 'Venue B', 200, 2, 'Event B description', 2, 'cover2.jpg', '3 hours', 100);
+VALUES ('Event A', NOW(), 1, 1, 1, 'Venue A', 10000, 1, 'Event A description', 1, 'cover1.jpg', '2 weeks', 50),
+       ('Event B', NOW(), 2, 2, 2, 'Venue B', 2000, 2, 'Event B description', 2, 'cover2.jpg', '1 week', 100);
 
 
 -- Inserting test data into the event_teams table
