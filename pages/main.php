@@ -13,7 +13,7 @@ $navbar = returnNavBar(null);
 $title = pageTitle("", "Landing Page");
 
 $goToCompany = getMainBtn("all_teams.php", "Teams");
-$goToTeam = getMainBtn("all_companies.php", "Events");
+$goToTeam = getMainBtn("all_events.php", "Events");
 $body = "
 <!--        <style>
         #myVideo {
@@ -51,7 +51,6 @@ $body = "
                   $goToTeam
                   
             </div>
-
 ";
 
 

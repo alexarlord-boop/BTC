@@ -1,7 +1,7 @@
 <?php
 include "../components/navbar.php";
 include "../components/head_template.php";
-require "../components/problem_card.php";
+require "../components/event_card.php";
 
 
 

@@ -123,7 +123,7 @@ function getPointers()
     return array(
         'team' => array(
             'title' => "Problems",
-            'lnk' => "all_companies.php",
+            'lnk' => "all_events.php",
             'dash' => 'team.php'
         ),
         'company' => array(
@@ -133,7 +133,7 @@ function getPointers()
         ),
 //        'coordinator' => array(
 //            'title' => "Events",
-//            'lnk' => "all_companies.php",
+//            'lnk' => "all_events.php",
 //            'dash' => 'coordinator.php'
 //        )
     );
