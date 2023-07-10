@@ -25,18 +25,18 @@ echo <<<HTML
 
                   <div class="form-outline mb-4">
                     <input type="email" id="email" name="email" class="form-control"
-                      placeholder="Email address" />
+                      placeholder="Email address" required/>
                     <label class="form-label" for="email">Username</label>
                   </div>
 
                   <div class="form-outline mb-4">
-                    <input type="password" id="password" name="password" class="form-control" />
+                    <input type="password" id="password" name="password" class="form-control" required/>
                     <label class="form-label" for="password">Password</label>
                   </div>
 
                   <div class="text-center pt-1 mb-5 pb-1">
-                    <button class="btn btn-primary btn-block gradient-custom-2 mb-3" type="submit">Login</button>
-                    <a class="text-muted" href="#!">Forgot password?</a>
+                    <button class="btn btn-primary btn-block gradient-custom-2 mb-3" id="submit" type="submit">Login</button>
+                    <!--<a class="text-muted" href="#!">Forgot password?</a>-->
                   </div>
 
                   <div class="d-flex align-items-center justify-content-center pb-4">
@@ -62,6 +62,12 @@ echo <<<HTML
     </div>
   </div>
 </section>
+
+<script>
+    $('#submit').on('click', function () {
+        
+    })
+</script>
 HTML;
 
 ?>
