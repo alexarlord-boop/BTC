@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once ('PHP-MySQLi-Database-Class-master/MysqliDb.php');
+require_once "components/ui.php";
 
 $host = 'localhost:3306';
 $user = 'root';
@@ -26,6 +27,18 @@ function pre($data) {
     print '<pre>' . print_r($data, true) . '</pre>';
 }
 
+function getRoleIds($array) {
+    $roleIds = [];
+    foreach ($array as $item) {
+        if (isset($item['role_id'])) {
+            $roleIds[] = $item['role_id'];
+        }
+    }
+    sort($roleIds);
+    return $roleIds;
+}
+
+
 function redirect($url)
 {
     if (headers_sent()) {
@@ -38,7 +51,15 @@ function redirect($url)
     }
 }
 
+
+
 function page($navbar, $body) {
+    $roles = $_SESSION['roles'];
+    $roleSwitch = getRoleSwitch($roles);
+
+    $email = $_SESSION['email'];
+    $fullName = $_SESSION['fullName'];
+
     return <<<HTML
             <!doctype html>
             <html lang="en">
@@ -51,8 +72,8 @@ function page($navbar, $body) {
                 </div>
                 
                 <!-- FOOTER -->
-              
                 <div class="container align-bottom">
+                <!-- FOOTER end -->
                       
                       <footer class="">
                        
@@ -72,16 +93,57 @@ function page($navbar, $body) {
 
                       </footer>
                 </div>
+                
                  
                 <!-- OFFCANVAS -->
                 <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasWithBothOptionsLabel">
                   <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Follow & Support</h5>
+                    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Profile</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                   </div>
-                  <div class="offcanvas-body h-100">
-                     
-                          <div class="col-md-12 mb-5">
+                  <div class="offcanvas-body h-100" style="z-index: 10;">
+                  
+                    <!-- Profile info -->
+                    <div class="card border-dark border-3 mb-5" style="border-radius: 15px;">
+                          <div class="card-title d-flex justify-content-between"> 
+                            <p class="ms-2 mt-2">$roleSwitch</p>
+                            <button type="button" title="Settings" class="btn btn-outline-secondary rounded-circle p-2 mt-1 mr-1">
+                              <i class="fa fa-cog"></i>
+                            </button>
+                          </div>
+                                      <div class="card-body text-center justify-content-center align-items-center">
+                                        <div class="mt-3 mb-4">
+                                          <img src="../img/avatar.jpeg" class="rounded-circle img-fluid mx-auto" style="width: 100px;" />
+                                        </div>
+                                        <h4 class="mb-2">$fullName</h4>
+                                        <p class="text-muted mb-4"><a href="#!">$email</a></p>
+                                       
+                                        <div class="mb-4 pb-2">
+                                          
+                                        </div>
+                                        <button type="button" class="btn btn-primary btn-rounded btn-lg">
+                                          Go to Dashboard
+                                        </button>
+                                        <div class="d-flex justify-content-between text-center mt-5 mb-2">
+                                          <div>
+                                            <p class="mb-2 h5">8471</p>
+                                            <p class="text-muted mb-0">Wallets Balance</p>
+                                          </div>
+                                          <div class="px-3">
+                                            <p class="mb-2 h5">8512</p>
+                                            <p class="text-muted mb-0">Income amounts</p>
+                                          </div>
+                                          <div>
+                                            <p class="mb-2 h5">4751</p>
+                                            <p class="text-muted mb-0">Total Transactions</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                    <!-- Profile info end -->
+                              
+                    <!-- Interaction (subscription) -->
+                    <div class="col-md-12 mb-5">
                             <form>
                               <h5>Subscribe to our newsletter</h5>
                               <p>Monthly digest of what's new and exciting from us.</p>
@@ -92,9 +154,11 @@ function page($navbar, $body) {
                               </div>
                             </form>
                           </div>
-                          
-                          
-                          <div class="col-2 mt-5 text-right">
+                    <!-- Interaction (subscription) end -->
+                        
+                    <!-- Links -->  
+                    <div class="row">
+                            <div class="col-2 mt-3 text-right">
                             <h5>Section</h5>
                             <ul class="nav flex-column">
                               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
@@ -104,11 +168,13 @@ function page($navbar, $body) {
                               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
                             </ul>
                           </div>
+                            <img src='../animations/flash.gif' class="col-8 offset-1 mt-5" height='150' width='400' style=' object-fit: fill; z-index: -1;'/>
+
+                          </div>
+                    <!-- Links end -->  
                           
-                          
-                        </div>
+                  </div>
                         
-                       <img src='../animations/flash.gif' class="align-bottom" height='200' width='500' style=' object-fit: fill; z-index: -1;'/>
                   </div>
                 </div>              
                   
