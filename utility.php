@@ -61,6 +61,7 @@ function page($navbar, $body) {
     $fullName = $_SESSION['fullName'];
     $avatar = ($_SESSION['avatar'] === "") ? "../img/avatar.jpeg" : $_SESSION['avatar'];
 
+    $label = getLabel(0.7);
     return <<<HTML
             <!doctype html>
             <html lang="en">
@@ -74,14 +75,14 @@ function page($navbar, $body) {
                 
                 <!-- FOOTER -->
                 <div class="container align-bottom">
-                <!-- FOOTER end -->
+                
                       
                       <footer class="">
                        
 
                         <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
                           <p>© 2022 Company, Inc. All rights reserved.</p>
-                          
+                           
 
                           <ul class="list-unstyled d-flex">
                             <li class="ms-3"><a class="" href="login.php"><svg class="bi" width="24" height="24"></svg>login</a></li>
@@ -91,9 +92,13 @@ function page($navbar, $body) {
                         </div>
                         <img src='../animations/credits.gif' height='500' width='2000' style='height: 100px; position: relative; bottom: 10px; object-fit: cover; z-index: -1;'/>
                         
+                       
 
                       </footer>
+                      
+                      
                 </div>
+                <!-- FOOTER end -->
                 
                  
                 <!-- OFFCANVAS -->
@@ -170,7 +175,7 @@ function page($navbar, $body) {
                             </ul>
                           </div>
                             <img src='../animations/flash.gif' class="col-8 offset-1 mt-5" height='150' width='400' style=' object-fit: fill; z-index: -1;'/>
-
+                            <div style="position: relative; bottom: 0px" >$label</div>
                           </div>
                     <!-- Links end -->  
                           

@@ -9,13 +9,15 @@ require_once "../utility.php";
 $_SESSION['title'] = '';
 $_SESSION['lnk'] = '';
 
+$label = getLabel();
 $navbar = returnNavBar(null);
 $title = pageTitle("", "Landing Page");
 
 $goToCompany = getMainBtn("all_teams.php", "Teams");
 $goToTeam = getMainBtn("all_events.php", "Events");
 $body = "
-                <img src='../animations/anim1.png' height='1000' width='1000' style='position: absolute; top:-300px; right: 0px; z-index: -1;'/>
+            <div style='position: absolute; top:-10px; right: 100px;'>$label</div>
+            
             $title
            <div class='card  bg-transparent border-0'>
            <div class='card-body'>

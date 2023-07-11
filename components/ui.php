@@ -69,4 +69,20 @@ function getRoleSwitch($roles) {
     $html .= '</select>';
     return $html;
 }
+
+function getLabel($size=1) {
+    return <<<HTML
+<label id="label" class='p-0 m-0 ' style='transform: scale({$size});'>
+                <div style='background-color: rgba(255,255,255,0.61); position: relative; top: 75px; left: 0px;'>
+                <p class='display-4 text-monospace' style='position: relative; top:10px;'>NEAPOLIS</p>
+                <p class='display-4 text-monospace' style='position: relative; top:10px;'>UNIVERSITY</p>
+                <p class='display-4 text-monospace' style='position: relative; top:10px;'>PAFOS <span style='font-size: 15px;'>cs364.web | 2023</span></p>
+                </div>
+                <img src='../animations/art.gif' height='350' width='400' style='object-fit: cover; position: relative; top: -100px; border: 1px solid; border-radius: 50%; z-index: -1;'/>
+                </label>
+
+HTML;
+
+}
 ?>
+
