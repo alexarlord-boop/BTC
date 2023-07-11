@@ -38,4 +38,35 @@ HTML;
 
 }
 
+function getImageInput() {
+    return <<<HTML
+
+<!--Avatar-->
+<div class="col-md-8 offset-md-2">
+    <div class="d-flex justify-content-center mb-4">
+        <img src="../img/avatar.jpeg"
+        class="rounded-circle" alt="Avatar" style="width: 150px;" />
+    </div>
+    <div class="d-flex justify-content-center">
+            <input type="file" accept="image/*" class="form-control" id="avatar" name="avatar" >
+        </div>
+    </div>
+</div>
+HTML;
+
+}
+
+function getRoleSwitch($roles) {
+    $roleNames = [
+        '1' => 'Company',
+        '2' => 'Team member'
+    ];
+
+    $html = '<select>';
+    foreach ($roles as $value => $label) {
+        $html .= '<option value="' . $value . '">' . $roleNames[$label] . '</option>';
+    }
+    $html .= '</select>';
+    return $html;
+}
 ?>
