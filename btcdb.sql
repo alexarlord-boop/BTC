@@ -53,7 +53,7 @@ CREATE TABLE `user`
     email             VARCHAR(100) NOT NULL,
     password          VARCHAR(60)  NOT NULL,
     registration_date datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    avatar_img        VARCHAR(100) NOT NULL,
+    avatar_img        LONGBLOB,
     is_admin          BIT          NOT NULL DEFAULT 0
 );
 
@@ -146,7 +146,7 @@ CREATE TABLE `event`
     entrance_lvl      INT NOT NULL ,
     description       VARCHAR(255) NOT NULL ,
     status_id         INT NOT NULL ,
-    cover_img         VARCHAR(60),
+    cover_img         LONGBLOB,
     duration          VARCHAR(60) NOT NULL ,
     amount            INT NOT NULL
 );
@@ -165,29 +165,59 @@ CREATE TABLE `event_teams`
 );
 
 -- Add foreign key constraints using table alteration
+#
+# ALTER TABLE `user_role`
+#     ADD FOREIGN KEY (user_id) REFERENCES user (id),
+#     ADD FOREIGN KEY (role_id) REFERENCES role (id);
+#
+# ALTER TABLE `company_info`
+#     ADD FOREIGN KEY (business_field_id) REFERENCES business_field (id);
+#
+# ALTER TABLE `user_company`
+#     ADD FOREIGN KEY (user_id) REFERENCES user (id),
+#     ADD FOREIGN KEY (company_info_id) REFERENCES company_info (id);
+#
+# ALTER TABLE `user_member`
+#     ADD FOREIGN KEY (user_id) REFERENCES user (id),
+#     ADD FOREIGN KEY (member_info_id) REFERENCES member_info (id);
+#
+# ALTER TABLE `team_member`
+#     ADD FOREIGN KEY (team_id) REFERENCES team (id),
+#     ADD FOREIGN KEY (member_id) REFERENCES user_member (user_id);
+#
+# ALTER TABLE `event`
+#     ADD FOREIGN KEY (status_id) REFERENCES status (id),
+#     ADD FOREIGN KEY (company_id) REFERENCES company_info (id),
+#     ADD FOREIGN KEY (business_field_id) REFERENCES business_field (id),
+#     ADD FOREIGN KEY (purpose_id) REFERENCES purpose (id);
+#
+# ALTER TABLE `event_teams`
+#     ADD FOREIGN KEY (event_id) REFERENCES event (id),
+#     ADD FOREIGN KEY (team_id) REFERENCES team (id);
+#
 
 ALTER TABLE `user_role`
-    ADD FOREIGN KEY (user_id) REFERENCES user (id),
-    ADD FOREIGN KEY (role_id) REFERENCES role (id);
+    ADD FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE,
+    ADD FOREIGN KEY (role_id) REFERENCES role (id) ON DELETE CASCADE;
 
 ALTER TABLE `company_info`
     ADD FOREIGN KEY (business_field_id) REFERENCES business_field (id);
 
 ALTER TABLE `user_company`
-    ADD FOREIGN KEY (user_id) REFERENCES user (id),
+    ADD FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE,
     ADD FOREIGN KEY (company_info_id) REFERENCES company_info (id);
 
 ALTER TABLE `user_member`
-    ADD FOREIGN KEY (user_id) REFERENCES user (id),
+    ADD FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE,
     ADD FOREIGN KEY (member_info_id) REFERENCES member_info (id);
 
 ALTER TABLE `team_member`
-    ADD FOREIGN KEY (team_id) REFERENCES team (id),
-    ADD FOREIGN KEY (member_id) REFERENCES user_member (user_id);
+    ADD FOREIGN KEY (team_id) REFERENCES team (id) ON DELETE CASCADE,
+    ADD FOREIGN KEY (member_id) REFERENCES user_member (user_id) ON DELETE CASCADE;
 
 ALTER TABLE `event`
     ADD FOREIGN KEY (status_id) REFERENCES status (id),
-    ADD FOREIGN KEY (company_id) REFERENCES company_info (id),
+    ADD FOREIGN KEY (company_id) REFERENCES company_info (id) ON DELETE CASCADE,
     ADD FOREIGN KEY (business_field_id) REFERENCES business_field (id),
     ADD FOREIGN KEY (purpose_id) REFERENCES purpose (id);
 
@@ -196,13 +226,13 @@ ALTER TABLE `event_teams`
     ADD FOREIGN KEY (team_id) REFERENCES team (id);
 
 
-
 -- INSERTION
 
 -- Inserting test data into the role table
 INSERT INTO `role` (name)
 VALUES ('company'),
-       ('member');
+       ('member'),
+       ('admin');
 
 -- Inserting test data into the business_field table
 INSERT INTO `business_field` (name)
@@ -227,8 +257,8 @@ VALUES ('Ongoing'),
 
 -- Inserting test data into the user table
 INSERT INTO user (name, surname, email, password, registration_date, avatar_img, is_admin)
-VALUES ('John', 'Doe', 'john.doe@example.com', '$2y$10$GmgCeUsxmuBo/GzkEBNwsuGjGyaz8W5Rk1D2oDGdmvXV0Dvob5PRq', NOW(), 'avatar1.jpg', 1),
-       ('Jane', 'Smith', 'jane.smith@example.com', '$2y$10$PARwhyc/eLxg366KmdeveOoeKljmHbzopEFKGkGTeucTAsxG1xgHK', NOW(), 'avatar2.jpg', 1);
+VALUES ('John', 'Doe', 'john.doe@example.com', '$2y$10$MzODb73kMUWInjLeU7kwS.llnqNdNe1JKpUtKIC3GwKOCj2CVr42O', NOW(), 'avatar1.jpg', 1),
+       ('Jane', 'Smith', 'jane.smith@example.com', '$2y$10$ho5biNh9zoYCxmNLQPPCEOcnBFD27pMP.EDS6OyVeqSVg623A6uqC', NOW(), 'avatar2.jpg', 1);
 
 
 -- Inserting test data into the user_role table
