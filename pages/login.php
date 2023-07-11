@@ -26,7 +26,7 @@ echo <<<HTML
                   <div class="form-outline mb-4">
                     <input type="email" id="email" name="email" class="form-control"
                       placeholder="Email address" required/>
-                    <label class="form-label" for="email">Username</label>
+                    <label class="form-label" for="email">Email</label>
                   </div>
 
                   <div class="form-outline mb-4">
@@ -41,7 +41,7 @@ echo <<<HTML
 
                   <div class="d-flex align-items-center justify-content-center pb-4">
                     <p class="mb-0 me-2">Don't have an account?</p>
-                    <button type="button" class="btn btn-outline-danger">Create new</button>
+                    <button onclick="window.location.href = '../pages/signup.php'" type="button" class="btn btn-outline-danger">Create new</button>
                   </div>
 
                 </form>

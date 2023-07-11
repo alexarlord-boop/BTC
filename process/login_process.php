@@ -16,15 +16,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the email exists in the database
     $db->where('email', $email);
     $user = $db->getOne('user');
-//    pre($user['password']);
-//    pre($user_password);
     if ($user) {
         // Verify the password using password_hash()
-//        if (password_verify($user_password, trim($user['password']))) {
-        if ($user_password === trim($user['password'])) {
+        if (password_verify($user_password, trim($user['password']))) {
+//        if ($user_password === trim($user['password'])) {
             // Login successful
+            $userId = $user['id'];
+            $db->where('user_id', $userId);
+            $userRoles = $db->get('user_role');
+            $roleIds = getRoleIds($userRoles);
+
             session_start();
+            $_SESSION['userId'] = $userId;
             $_SESSION['email'] = $email;
+            $_SESSION['fullName'] = $user['name'] . ' ' . $user['surname'];
+            $_SESSION['roles'] = $roleIds;
             echo "Login successful. Welcome, $email!";
             redirect("../pages/main.php");
         } else {
