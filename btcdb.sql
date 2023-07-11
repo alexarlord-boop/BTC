@@ -53,8 +53,10 @@ CREATE TABLE `user`
     email             VARCHAR(100) NOT NULL,
     password          VARCHAR(60)  NOT NULL,
     registration_date datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    avatar_img        LONGBLOB,
+    avatar_img        VARCHAR(255),
     is_admin          BIT          NOT NULL DEFAULT 0
+
+# is_admin remove -> admin role add
 );
 
 CREATE TABLE `user_role`
@@ -146,7 +148,7 @@ CREATE TABLE `event`
     entrance_lvl      INT NOT NULL ,
     description       VARCHAR(255) NOT NULL ,
     status_id         INT NOT NULL ,
-    cover_img         LONGBLOB,
+    cover_img         VARCHAR(100),
     duration          VARCHAR(60) NOT NULL ,
     amount            INT NOT NULL
 );
@@ -257,8 +259,8 @@ VALUES ('Ongoing'),
 
 -- Inserting test data into the user table
 INSERT INTO user (name, surname, email, password, registration_date, avatar_img, is_admin)
-VALUES ('John', 'Doe', 'john.doe@example.com', '$2y$10$MzODb73kMUWInjLeU7kwS.llnqNdNe1JKpUtKIC3GwKOCj2CVr42O', NOW(), 'avatar1.jpg', 1),
-       ('Jane', 'Smith', 'jane.smith@example.com', '$2y$10$ho5biNh9zoYCxmNLQPPCEOcnBFD27pMP.EDS6OyVeqSVg623A6uqC', NOW(), 'avatar2.jpg', 1);
+VALUES ('John', 'Doe', 'john.doe@example.com', '$2y$10$MzODb73kMUWInjLeU7kwS.llnqNdNe1JKpUtKIC3GwKOCj2CVr42O', NOW(), 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80', 1),
+       ('Jane', 'Smith', 'jane.smith@example.com', '$2y$10$ho5biNh9zoYCxmNLQPPCEOcnBFD27pMP.EDS6OyVeqSVg623A6uqC', NOW(), 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80', 1);
 
 
 -- Inserting test data into the user_role table
