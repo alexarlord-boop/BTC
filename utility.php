@@ -59,6 +59,7 @@ function page($navbar, $body) {
 
     $email = $_SESSION['email'];
     $fullName = $_SESSION['fullName'];
+    $avatar = ($_SESSION['avatar'] === "") ? "../img/avatar.jpeg" : $_SESSION['avatar'];
 
     return <<<HTML
             <!doctype html>
@@ -113,7 +114,7 @@ function page($navbar, $body) {
                           </div>
                                       <div class="card-body text-center justify-content-center align-items-center">
                                         <div class="mt-3 mb-4">
-                                          <img src="../img/avatar.jpeg" class="rounded-circle img-fluid mx-auto" style="width: 100px;" />
+                                          <img src="{$avatar}" class="rounded-circle img-fluid mx-auto" style="width: 150px; height: 150px; object-fit: cover;" />
                                         </div>
                                         <h4 class="mb-2">$fullName</h4>
                                         <p class="text-muted mb-4"><a href="#!">$email</a></p>

@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $surname = $_POST['surname'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $avatar = $_POST['avatar'];
+    $path_avatar = $_POST['avatar'];
     $role = $_POST['option'];
 
 
@@ -31,8 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Hash the password
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        // Prepare the data to be inserted into the database
-        $path_avatar = '/img/' . 'avatar.jpeg'; // later image blob storage
+
+
+
+
 
         $user_data = [
             'name' => $name,
@@ -40,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'email' => $email,
             'password' => $hashedPassword,
             'avatar_img' => $path_avatar
-            // Add other columns as needed
 
         ];
 
@@ -64,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['email'] = $email;
                 $_SESSION['fullName'] = $name . ' ' . $surname;
                 $_SESSION['roles'] = [$user_role_data['role_id']];
-
+                $_SESSION['avatar'] = $path_avatar;
                 echo "Registration successful!";
                 redirect("../pages/main.php");
 

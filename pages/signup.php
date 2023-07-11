@@ -14,7 +14,7 @@ echo <<<HTML
       <div class="col-xl-10">
         <div class="card rounded-3 text-black">
           
-           <form method="post" action="../process/signup_process.php" class="row g-0">
+           <form method="post" action="../process/signup_process.php" enctype="multipart/form-data" class="row g-0">
             <div class="col-lg-6">
               <div class="card-body p-md-5 mx-md-4">
 

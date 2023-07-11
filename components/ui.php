@@ -48,7 +48,7 @@ function getImageInput() {
         class="rounded-circle" alt="Avatar" style="width: 150px;" />
     </div>
     <div class="d-flex justify-content-center">
-            <input type="file" accept="image/*" class="form-control" id="avatar" name="avatar" >
+            <input type="text" placeholder="Image url" class="form-control" id="avatar" name="avatar" >
         </div>
     </div>
 </div>

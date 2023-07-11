@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['email'] = $email;
             $_SESSION['fullName'] = $user['name'] . ' ' . $user['surname'];
             $_SESSION['roles'] = $roleIds;
+            $_SESSION['avatar'] = $user['avatar_img'];
             echo "Login successful. Welcome, $email!";
             redirect("../pages/main.php");
         } else {
