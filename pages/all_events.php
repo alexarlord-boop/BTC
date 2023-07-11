@@ -1,6 +1,7 @@
 <?php
 include "../components/navbar.php";
 include "../components/head_template.php";
+include "../components/ui.php";
 require "../components/event_card.php";
 
 

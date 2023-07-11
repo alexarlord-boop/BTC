@@ -1,9 +1,9 @@
 <?php
-
+session_start();
 include "../components/head_template.php";
 include "../components/navbar.php";
 include "../components/ui.php";
-require "../utility.php";
+require_once "../utility.php";
 
 //$_SESSION['userType'] = null;
 $_SESSION['title'] = '';
@@ -15,21 +15,6 @@ $title = pageTitle("", "Landing Page");
 $goToCompany = getMainBtn("all_teams.php", "Teams");
 $goToTeam = getMainBtn("all_events.php", "Events");
 $body = "
-<!--        <style>
-        #myVideo {
-          position: fixed;
-          top: 0px;
-          right: 0;
-          bottom: 0;
-          min-width: 100%; 
-          height: 50%;
-        }
-        </style>
-
-        <video autoplay muted loop id='myVideo'>
-          <source id='src' src='../vid1.mp4' type='video/mp4'>
-        </video>-->
-        
                 <img src='../animations/anim1.png' height='1000' width='1000' style='position: absolute; top:-300px; right: 0px; z-index: -1;'/>
             $title
            <div class='card  bg-transparent border-0'>

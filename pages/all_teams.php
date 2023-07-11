@@ -1,8 +1,9 @@
 <?php
 include "../components/navbar.php";
 include "../components/head_template.php";
-require "../utility.php";
-session_start();
+include "../components/ui.php";
+require "../components/event_card.php";
+
 $navbar = returnNavBar(null);
 $title = pageTitle("search", "Teams");
 
