@@ -34,7 +34,7 @@ $title
 <div class="card col-md-8 offset-md-2 rounded-4 border-dark my-5">
 $success
 $error
-<div class="card-title text-center display-6 text-primary mt-4"><i class="far fa-pencil"></i> User data</div>
+<div class="card-title text-center display-6 text-primary mt-4">User data</div>
 
 <div class="card-body">
 <form method="post" action="../process/settings_default_process.php">
@@ -46,9 +46,11 @@ $error
     <!-- Email -->
     <div class="row"> 
         <div class="form-outline col-md-6 mb-4">
+            
             <input type="email" id="email" name="email" class="form-control text-primary"
               value="{$userData['email']}"
-              placeholder="Email address"/>
+              placeholder="Email address" required/>
+              
             <label class="form-label" for="email">Email</label>
           </div>
     </div>
