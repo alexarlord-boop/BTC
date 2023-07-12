@@ -8,13 +8,13 @@ require "../utility.php";
 $avatarInput = getImageInput();
 echo <<<HTML
 
-<section class="h-100 gradient-form" style="background-color: #eee;">
+<section class="h-100 gradient-form" style="background-image: url('../animations/back.gif'); background-size: 2000px; background-position: center; background-position-y: -50px; background-position-x: 85px;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-10">
         <div class="card rounded-3 text-black">
           
-           <form method="post" action="../process/signup_process.php" enctype="multipart/form-data" class="row g-0">
+           <form method="post" action="../process/signup_process.php" enctype="multipart/form-data" class="row g-0 m-0">
             <div class="col-lg-6">
               <div class="card-body p-md-5 mx-md-4">
 

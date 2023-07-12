@@ -61,7 +61,7 @@ function page($navbar, $body) {
     $fullName = $_SESSION['fullName'];
     $avatar = ($_SESSION['avatar'] === "") ? "../img/avatar.jpeg" : $_SESSION['avatar'];
 
-    $label = getLabel(0.7);
+    $label = getLabel(0.4);
     return <<<HTML
             <!doctype html>
             <html lang="en">
