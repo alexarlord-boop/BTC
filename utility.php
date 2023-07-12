@@ -114,7 +114,7 @@ function page($navbar, $body) {
                           <div class="card-title d-flex justify-content-between"> 
                             <p class="ms-2 mt-2">$roleSwitch</p>
                             <button type="button" title="Settings" class="btn btn-outline-secondary rounded-circle p-2 mt-1 mr-1">
-                              <i class="fa fa-cog"></i>
+                              <a href="../pages/settings.php"><i class="fa fa-cog"></i></a>
                             </button>
                           </div>
                                       <div class="card-body text-center justify-content-center align-items-center">
