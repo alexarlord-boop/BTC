@@ -8,7 +8,10 @@ require "../utility.php";
 $avatarInput = getImageInput();
 echo <<<HTML
 
+<section class="h-100 gradient-form" style="background-color: #f3f3f3;">
+<!--
 <section class="h-100 gradient-form" style="background-image: url('../animations/back.gif'); background-size: 2000px; background-position: center; background-position-y: -50px; background-position-x: 85px;">
+-->
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-10">
