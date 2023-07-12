@@ -84,13 +84,13 @@ echo <<<HTML
                   <div class="row"> 
                     <div class="form-outline col-md-6 mb-4">
                     <input type="text" id="country" name="country" class="form-control"
-                      placeholder="Your country" required/>
+                      placeholder="Your country"/>
                     <label class="form-label" for="country">Country</label>
                   </div>
                   
                   <div class="form-outline col-md-6 mb-4">
                     <input type="text" id="city" name="city" class="form-control"
-                      placeholder="Your city" required/>
+                      placeholder="Your city"/>
                     <label class="form-label" for="city">City</label>
                   </div>
                   </div>
