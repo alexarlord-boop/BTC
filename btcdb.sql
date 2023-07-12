@@ -54,7 +54,8 @@ CREATE TABLE `user`
     password          VARCHAR(60)  NOT NULL,
     registration_date datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     avatar_img        VARCHAR(255),
-    is_admin          BIT          NOT NULL DEFAULT 0
+    country           VARCHAR(60),
+    city              VARCHAR(60)
 
 # is_admin remove -> admin role add
 );
@@ -63,7 +64,7 @@ CREATE TABLE `user_role`
 (
     id      INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
-    role_id INT
+    role_id INT DEFAULT 4
 );
 
 CREATE TABLE `role`
@@ -84,7 +85,7 @@ CREATE TABLE `company_info`
     name              VARCHAR(60) NOT NULL,
     country           VARCHAR(60) NOT NULL,
     city              VARCHAR(60) NOT NULL,
-    business_field_id INT NOT NULL
+    business_field_id INT         NOT NULL
 );
 
 CREATE TABLE `member_info`
@@ -116,10 +117,10 @@ CREATE TABLE `team`
 (
     id                INT PRIMARY KEY AUTO_INCREMENT,
     name              VARCHAR(100) NOT NULL,
-    organization_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    velocity          INT NOT NULL DEFAULT 0,
-    likes             INT NOT NULL DEFAULT 0,
-    is_open           BIT NOT NULL DEFAULT 1
+    organization_date TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    velocity          INT          NOT NULL DEFAULT 0,
+    likes             INT          NOT NULL DEFAULT 0,
+    is_open           BIT          NOT NULL DEFAULT 1
 );
 
 CREATE TABLE `team_member`
@@ -138,19 +139,19 @@ CREATE TABLE `purpose`
 CREATE TABLE `event`
 (
     id                INT PRIMARY KEY AUTO_INCREMENT,
-    name              VARCHAR(100) NOT NULL ,
-    date              TIMESTAMP NOT NULL ,
-    company_id        INT NOT NULL ,
-    business_field_id INT NOT NULL ,
-    purpose_id        INT NOT NULL ,
+    name              VARCHAR(100) NOT NULL,
+    date              TIMESTAMP    NOT NULL,
+    company_id        INT          NOT NULL,
+    business_field_id INT          NOT NULL,
+    purpose_id        INT          NOT NULL,
     place             VARCHAR(100),
     reward            INT,
-    entrance_lvl      INT NOT NULL ,
-    description       VARCHAR(255) NOT NULL ,
-    status_id         INT NOT NULL ,
+    entrance_lvl      INT          NOT NULL,
+    description       VARCHAR(255) NOT NULL,
+    status_id         INT          NOT NULL,
     cover_img         VARCHAR(100),
-    duration          VARCHAR(60) NOT NULL ,
-    amount            INT NOT NULL
+    duration          VARCHAR(60)  NOT NULL,
+    amount            INT          NOT NULL
 );
 
 CREATE TABLE `status`
@@ -234,7 +235,8 @@ ALTER TABLE `event_teams`
 INSERT INTO `role` (name)
 VALUES ('company'),
        ('member'),
-       ('admin');
+       ('admin'),
+       ('visitor');
 
 -- Inserting test data into the business_field table
 INSERT INTO `business_field` (name)
@@ -258,15 +260,18 @@ VALUES ('Ongoing'),
 
 
 -- Inserting test data into the user table
-INSERT INTO user (name, surname, email, password, registration_date, avatar_img, is_admin)
-VALUES ('John', 'Doe', 'john.doe@example.com', '$2y$10$MzODb73kMUWInjLeU7kwS.llnqNdNe1JKpUtKIC3GwKOCj2CVr42O', NOW(), 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80', 1),
-       ('Jane', 'Smith', 'jane.smith@example.com', '$2y$10$ho5biNh9zoYCxmNLQPPCEOcnBFD27pMP.EDS6OyVeqSVg623A6uqC', NOW(), 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80', 1);
+INSERT INTO user (name, surname, email, password, registration_date, avatar_img)
+VALUES ('John', 'Doe', 'john.doe@example.com', '$2y$10$MzODb73kMUWInjLeU7kwS.llnqNdNe1JKpUtKIC3GwKOCj2CVr42O', NOW(),
+        'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80'),
+       ('Jane', 'Smith', 'jane.smith@example.com', '$2y$10$ho5biNh9zoYCxmNLQPPCEOcnBFD27pMP.EDS6OyVeqSVg623A6uqC',
+        NOW(),
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',);
 
 
 -- Inserting test data into the user_role table
 INSERT INTO `user_role` (user_id, role_id)
-VALUES (1, 1),
-       (2, 2);
+VALUES (1, 3),
+       (2, 3);
 
 
 -- Inserting test data into the company_info table

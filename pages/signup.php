@@ -81,9 +81,26 @@ echo <<<HTML
                   
                   <p class="my-5"></p>
                   
+                  <div class="row"> 
+                    <div class="form-outline col-md-6 mb-4">
+                    <input type="text" id="country" name="country" class="form-control"
+                      placeholder="Your country" required/>
+                    <label class="form-label" for="country">Country</label>
+                  </div>
+                  
+                  <div class="form-outline col-md-6 mb-4">
+                    <input type="text" id="city" name="city" class="form-control"
+                      placeholder="Your city" required/>
+                    <label class="form-label" for="city">City</label>
+                  </div>
+                  </div>
+                  
                   <h4 class="text-center mb-2">Your role</h4>
                   <div class="row col-md-8 offset-md-2">
-                      <input type="radio" class="btn-check" id="option1" name="option" value="company" autocomplete="off" checked required />
+                      <input type="radio" class="btn-check" id="option0" name="option" value="visitor" autocomplete="off" checked required/>
+                      <label class="btn btn-white" for="option0">Visitor</label>
+                      
+                      <input type="radio" class="btn-check" id="option1" name="option" value="company" autocomplete="off"  />
                       <label class="btn btn-white" for="option1">Company</label>
                     
                       <input type="radio" class="btn-check" id="option2" name="option" value="member" autocomplete="off" />

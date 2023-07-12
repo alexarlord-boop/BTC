@@ -59,7 +59,9 @@ HTML;
 function getRoleSwitch($roles) {
     $roleNames = [
         '1' => 'Company',
-        '2' => 'Team member'
+        '2' => 'Team member',
+        '3' => 'Admin',
+        '4' => 'Visitor'
     ];
 
     $html = '<select>';
