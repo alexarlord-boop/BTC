@@ -4,7 +4,6 @@
 //include "../components/head_template.php";
 
 require "../utility.php";
-session_start();
 
 
 function getProblemCard($company, $percent, $fond, $platform, $place, $text, $event, $type, $color, $icon ) {
