@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -38,6 +39,24 @@ function getRoleIds($array) {
     return $roleIds;
 }
 
+function setRoleColor() {
+    switch ($_SESSION['currentRole']) {
+        case "1":
+            $_SESSION['color'] = "#ffc107";
+            break;
+        case "2":
+            $_SESSION['color'] = "#20c997";
+            break;
+        case "3":
+            $_SESSION['color'] = "#d63384";
+            break;
+        case "4":
+            $_SESSION['color'] = "#6610f2";
+            break;
+    }
+    return $_SESSION['color'];
+}
+
 
 function redirect($url)
 {
@@ -54,8 +73,11 @@ function redirect($url)
 
 
 function page($navbar, $body) {
+    $userId = $_SESSION['userId'];
+
     $roles = $_SESSION['roles'];
     $roleSwitch = getRoleSwitch($roles);
+    $roleColor = $_SESSION['color'];
 
     $email = $_SESSION['email'];
     $fullName = $_SESSION['fullName'];
@@ -79,8 +101,7 @@ function page($navbar, $body) {
                       
                       <footer class="">
                        
-
-                        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+                        <div id="footer-border"  class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
                           <p>© 2022 Company, Inc. All rights reserved.</p>
                            
 
@@ -110,19 +131,20 @@ function page($navbar, $body) {
                   <div class="offcanvas-body h-100" style="z-index: 10;">
                   
                     <!-- Profile info -->
-                    <div class="card border-dark border-3 mb-5" style="border-radius: 15px;">
+                    <div id="profile-card" class="card  border-3 mb-5" style="border-radius: 15px;">
                           <div class="card-title d-flex justify-content-between"> 
                             <p class="ms-2 mt-2">$roleSwitch</p>
-                            <button type="button" title="Settings" class="btn btn-outline-secondary rounded-circle p-2 mt-1 mr-1">
-                              <a href="../pages/settings.php"><i class="fa fa-cog"></i></a>
-                            </button>
+                            
+                              <a href="../pages/settings.php"  title="Settings" class="btn btn-outline-secondary rounded-circle p-2 mt-1 mr-1"><i class="fa fa-cog"></i></a>
+                           
                           </div>
+                          <div id="result"></div>
                                       <div class="card-body text-center justify-content-center align-items-center">
                                         <div class="mt-3 mb-4">
-                                          <img src="{$avatar}" class="rounded-circle img-fluid mx-auto" style="width: 150px; height: 150px; object-fit: cover;" />
+                                          <img id="avatar-profile" src="{$avatar}" class="rounded-circle img-fluid mx-auto" style="width: 150px; height: 150px; object-fit: cover;" />
                                         </div>
-                                        <h4 class="mb-2">$fullName</h4>
-                                        <p class="text-muted mb-4"><a href="#!">$email</a></p>
+                                        <h4 id="name-profile" class="mb-2">name</h4>
+                                        <p class="text-muted mb-4"><a id="email-profile" href="#!">email</a></p>
                                        
                                         <div class="mb-4 pb-2">
                                           
@@ -182,7 +204,59 @@ function page($navbar, $body) {
                   </div>
                         
                   </div>
-                </div>              
+                </div>   
+                
+                <script> 
+                // no need to specify document ready
+                
+                    
+                    // optional: don't cache ajax to force the content to be fresh
+                    $.ajaxSetup ({
+                        cache: false
+                    });
+                
+                    let name = $('#name-profile');
+                    let email = $('#email-profile');
+                    let avatar = $('#avatar-profile');
+                    let card = $('#profile-card');
+                    
+                    // specify the server/url you want to load data from
+                    var url = "../process/user_info.php/?id=$userId" ;
+                    
+                    // on click, load the data dynamically into the #result div
+                    $("#menuBtn").click(function(){
+                        
+                        $("#name-profile").html('loading..').load(url, function (data) {
+                            var response = JSON.parse(data); // Parse the JSON response
+                             name.html(response.data.name + ' ' + response.data.surname);
+                             email.html(response.data.email);
+                             avatar.attr('src', response.data.avatar_img);
+                             card.css('border-color', response.color);
+                            
+                        });
+                    });
+         
+          
+        
+                    $("#roleSelect").on("change", function () {
+                        let role = $(this).val();
+                        let roleName = $(`#roleSelect option[value=` + role + ']').html();
+                       
+                        
+                        $.post("../process/set_role.php", { roleId: role, roleName: roleName}, function (data) {
+                            var response = JSON.parse(data); // Parse the JSON response
+                            
+                            card.css('border-color', response.color);
+                            $("#role-based-settings-card").css('border-color', response.color);
+                            $("#logo").css('background-color', response.color);
+                            $('#footer-border').css('border-color', response.color);
+                            
+                            // location.reload();
+                        })
+                    });
+            
+  
+    </script>          
                   
                   
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

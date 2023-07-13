@@ -3,7 +3,7 @@ session_start();
 include "../components/head_template.php";
 include "../components/navbar.php";
 include "../components/ui.php";
-require_once "../utility.php";
+require "../utility.php";
 
 //$_SESSION['userType'] = null;
 $_SESSION['title'] = '';

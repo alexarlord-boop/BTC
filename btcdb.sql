@@ -262,7 +262,7 @@ VALUES ('Ongoing'),
 -- Inserting test data into the user table
 INSERT INTO user (name, surname, email, password, registration_date, avatar_img)
 VALUES ('John', 'Doe', 'john.doe@example.com', '$2y$10$MzODb73kMUWInjLeU7kwS.llnqNdNe1JKpUtKIC3GwKOCj2CVr42O', NOW(),
-        'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80'),
+        'https://media.giphy.com/media/jobZpJ2vUWRdS/giphy.gif?cid=ecf05e47d49uuvfp0hk8szes3d9u1okbe3cqj7dd0d0y4vde&ep=v1_gifs_search&rid=giphy.gif&ct=g'),
        ('Jane', 'Smith', 'jane.smith@example.com', '$2y$10$ho5biNh9zoYCxmNLQPPCEOcnBFD27pMP.EDS6OyVeqSVg623A6uqC',
         NOW(),
         'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');
