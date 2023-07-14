@@ -48,6 +48,14 @@ $roleIdToColorList = array(
     "4"=>"#6610f2"
 );
 
+global $roleIdToName;
+$roleIdToName = array(
+    "1"=>"company",
+    "2"=>"member",
+    "3"=>"admin",
+    "4"=>"visitor"
+);
+
 function setRoleColor() {
     global $roleIdToColorList;
     $roleid = $_SESSION['currentRole'];
@@ -144,7 +152,7 @@ function page($navbar, $body) {
                                         <div class="mb-4 pb-2">
                                           
                                         </div>
-                                        <button type="button" class="btn btn-primary btn-rounded btn-lg">
+                                        <button id="dashboardBtn" type="button" class="btn btn-primary btn-rounded btn-lg">
                                           Go to Dashboard
                                         </button>
                                         <div class="d-flex justify-content-between text-center mt-5 mb-2">
@@ -215,6 +223,7 @@ function page($navbar, $body) {
                     let avatar = $('#avatar-profile');
                     let card = $('#profile-card');
                     let roleSwitch = $('#roleSwitch');
+                    let dashBtn = $('#dashboardBtn');
                     
                     // specify the server/url you want to load data from
                     var url = "../process/user_info.php/?id=$userId" ;
@@ -229,23 +238,45 @@ function page($navbar, $body) {
                              email.html(response.data.email);
                              avatar.attr('src', response.data.avatar_img);
                              card.css('border-color', response.color);
+                             dashBtn.css('background-color', response.color).click(function () {
+                                        window.location.href = '../pages/dashboard_' + '{$GLOBALS['roleIdToName'][$_SESSION['currentRole']]}' + '.php'
+                                    })
                              roleSwitch.html(response.switch);
-                             
                              
                              
                             $("#roleSelect").on("change", function () {
                                 let role_id = $(this).val();
                                 let roleName = $(`#roleSelect option[value=` + role_id + ']').html();
-                               
+                                // $(this).mouseout();
                                 
                                 $.post("../process/set_role.php", { userId: '$userId', roleId: role_id, roleName: roleName}, function (data) {
                                     var response = JSON.parse(data); // Parse the JSON response
                                     console.log(response);
                                     card.css('border-color', response.color);
+                                    dashBtn.css('background-color', response.color).click(function () {
+                                        window.location.href = '../pages/dashboard_' + response.roleName + '.php'
+                                    })
                                     // $("#role-based-settings-card").css('border-color', response.color);
                                     $("#logo").css('background-color', response.color);
                                     $('#footer-border').css('border-color', response.color);
-                                    setRoleBasedData(parseInt(role_id));
+                                   
+                                    if (window.location.href.includes('dashboard')) {
+                                        var current = window.location.href.split('WAT')[1].split('_')[1].split('.')[0];
+                                         if (window.location.href.split('WAT')[1] === '/pages/dashboard_' + response.roleName + '.php') {
+                                            console.log('right place');
+                                            
+                                            console.log(current);
+                                            $('#' + current + '-dashboard').css('filter', 'blur(0px)');
+                                            $('#' + current + '-warning').fadeOut();
+                                        } else {
+                                            console.log('wrong place');
+                                            console.log(current);
+                                            $('#' + current + '-dashboard').css('filter', 'blur(40px)');
+                                            $('#' + current + '-warning').fadeIn(100);
+                                        }
+                                    } else if (window.location.href.includes('settings')) {  // settings
+                                        setRoleBasedData(parseInt(role_id));
+                                    }
                                     // location.reload();
                             })
                     });

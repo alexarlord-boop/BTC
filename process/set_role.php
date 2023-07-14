@@ -10,8 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //  role-based style
     $roleColor = setRoleColor();
 
+    $roleName =  $GLOBALS['roleIdToName'][$_SESSION['currentRole']];
 
-    $response = array('message' => 'success', 'data' => 'User role: ' . $currentRoleName, 'color'=> $roleColor);
+    $response = array('message' => 'success', 'data' => 'User role: ' . $currentRoleName, 'roleName'=>$roleName, 'color'=> $roleColor);
     echo json_encode($response);
 }
 ?>
