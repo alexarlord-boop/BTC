@@ -11,7 +11,7 @@ $_SESSION['lnk'] = '';
 
 $label = getLabel();
 $navbar = returnNavBar(null);
-$title = pageTitle("", "Landing Page");
+$title = pageTitle("", "Intro");
 
 $goToCompany = getMainBtn("all_teams.php", "Teams");
 $goToTeam = getMainBtn("all_events.php", "Events");
