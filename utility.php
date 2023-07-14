@@ -39,21 +39,19 @@ function getRoleIds($array) {
     return $roleIds;
 }
 
+
+global $roleIdToColorList;
+$roleIdToColorList = array(
+    "1"=>"#ffc107",
+    "2"=>"#20c997",
+    "3"=>"#d63384",
+    "4"=>"#6610f2"
+);
+
 function setRoleColor() {
-    switch ($_SESSION['currentRole']) {
-        case "1":
-            $_SESSION['color'] = "#ffc107";
-            break;
-        case "2":
-            $_SESSION['color'] = "#20c997";
-            break;
-        case "3":
-            $_SESSION['color'] = "#d63384";
-            break;
-        case "4":
-            $_SESSION['color'] = "#6610f2";
-            break;
-    }
+    global $roleIdToColorList;
+    $roleid = $_SESSION['currentRole'];
+    $_SESSION['color'] = $roleIdToColorList[$roleid];
     return $_SESSION['color'];
 }
 
@@ -75,9 +73,6 @@ function redirect($url)
 function page($navbar, $body) {
     $userId = $_SESSION['userId'];
 
-    $roles = $_SESSION['roles'];
-    $roleSwitch = getRoleSwitch($roles);
-    $roleColor = $_SESSION['color'];
 
     $email = $_SESSION['email'];
     $fullName = $_SESSION['fullName'];
@@ -133,9 +128,9 @@ function page($navbar, $body) {
                     <!-- Profile info -->
                     <div id="profile-card" class="card  border-3 mb-5" style="border-radius: 15px;">
                           <div class="card-title d-flex justify-content-between"> 
-                            <p class="ms-2 mt-2">$roleSwitch</p>
+                            <p id="roleSwitch" class="ms-2 mt-2">{$_SESSION['roleSwitch']}</p>
                             
-                              <a href="../pages/settings.php"  title="Settings" class="btn btn-outline-secondary rounded-circle p-2 mt-1 mr-1"><i class="fa fa-cog"></i></a>
+                            <a href="../pages/settings.php"  title="Settings" class="btn btn-outline-secondary rounded-circle p-2 mt-1 mr-1"><i class="fa fa-cog"></i></a>
                            
                           </div>
                           <div id="result"></div>
@@ -219,42 +214,49 @@ function page($navbar, $body) {
                     let email = $('#email-profile');
                     let avatar = $('#avatar-profile');
                     let card = $('#profile-card');
+                    let roleSwitch = $('#roleSwitch');
                     
                     // specify the server/url you want to load data from
                     var url = "../process/user_info.php/?id=$userId" ;
                     
-                    // on click, load the data dynamically into the #result div
+                    // on NAVBAR MENU click, load the data dynamically
                     $("#menuBtn").click(function(){
                         
                         $("#name-profile").html('loading..').load(url, function (data) {
                             var response = JSON.parse(data); // Parse the JSON response
+                            console.log(response);
                              name.html(response.data.name + ' ' + response.data.surname);
                              email.html(response.data.email);
                              avatar.attr('src', response.data.avatar_img);
                              card.css('border-color', response.color);
-                            
+                             roleSwitch.html(response.switch);
+                             
+                             
+                             
+                            $("#roleSelect").on("change", function () {
+                                let role_id = $(this).val();
+                                let roleName = $(`#roleSelect option[value=` + role_id + ']').html();
+                               
+                                
+                                $.post("../process/set_role.php", { userId: '$userId', roleId: role_id, roleName: roleName}, function (data) {
+                                    var response = JSON.parse(data); // Parse the JSON response
+                                    console.log(response);
+                                    card.css('border-color', response.color);
+                                    // $("#role-based-settings-card").css('border-color', response.color);
+                                    $("#logo").css('background-color', response.color);
+                                    $('#footer-border').css('border-color', response.color);
+                                    setRoleBasedData(parseInt(role_id));
+                                    // location.reload();
+                            })
+                    });
                         });
                     });
          
           
         
-                    $("#roleSelect").on("change", function () {
-                        let role = $(this).val();
-                        let roleName = $(`#roleSelect option[value=` + role + ']').html();
-                       
-                        
-                        $.post("../process/set_role.php", { roleId: role, roleName: roleName}, function (data) {
-                            var response = JSON.parse(data); // Parse the JSON response
-                            
-                            card.css('border-color', response.color);
-                            $("#role-based-settings-card").css('border-color', response.color);
-                            $("#logo").css('background-color', response.color);
-                            $('#footer-border').css('border-color', response.color);
-                            
-                            // location.reload();
-                        })
-                    });
+                    
             
+                    
   
     </script>          
                   

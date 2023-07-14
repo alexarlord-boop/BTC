@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['avatar'] = $user['avatar_img'];
 
             $_SESSION['currentRole'] = strval($roleIds[0]); // should be global, for role-base data
+            setRoleColor();
 
             echo "Login successful. Welcome, $email!";
             redirect("../pages/main.php");

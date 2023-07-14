@@ -11,7 +11,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
         $roleColor = setRoleColor();
 
-        $response = array('message' => 'success', 'data' => $userInfo, 'role' => $_SESSION['currentRole'], 'color' => $roleColor);
+        $db->where('user_id', $id);
+        $userRoles = $db->get('user_role');
+        $roleIds = getRoleIds($userRoles);
+        $_SESSION['roles'] = $roleIds;
+        $_SESSION['roleSwitch'] = getRoleSwitch($roleIds);
+
+        $response = array('message' => 'success', 'data' => $userInfo, 'role' => $_SESSION['currentRole'], 'switch'=>$_SESSION['roleSwitch'], 'color' => $roleColor);
         echo json_encode($response);
     }
 
