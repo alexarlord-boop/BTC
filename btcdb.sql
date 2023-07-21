@@ -149,7 +149,7 @@ CREATE TABLE `event`
     entrance_lvl      INT          NOT NULL,
     description       VARCHAR(255) NOT NULL,
     status_id         INT          NOT NULL,
-    cover_img         VARCHAR(100),
+    cover_img         VARCHAR(255),
     duration          VARCHAR(60)  NOT NULL,
     amount            INT          NOT NULL
 );

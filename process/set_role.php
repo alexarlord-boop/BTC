@@ -10,9 +10,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //  role-based style
     $roleColor = setRoleColor();
 
+    $id = $_SESSION['userId'];
+    $db->where('user_id', $id);
+    $userRoles = $db->get('user_role');
+    $roleIds = getRoleIds($userRoles);
+    $_SESSION['roles'] = $roleIds;
+    $_SESSION['roleSwitch'] = getRoleSwitch($roleIds);
+
     $roleName =  $GLOBALS['roleIdToName'][$_SESSION['currentRole']];
 
-    $response = array('message' => 'success', 'data' => 'User role: ' . $currentRoleName, 'roleName'=>$roleName, 'color'=> $roleColor);
+    $response = array('message' => 'success', 'data' => 'User role: ' . $currentRoleName, 'roleName'=>$roleName, 'switch'=>$_SESSION['roleSwitch'], 'color'=> $roleColor);
     echo json_encode($response);
 }
 ?>

@@ -88,214 +88,220 @@ function page($navbar, $body) {
 
     $label = getLabel(0.4);
     return <<<HTML
-            <!doctype html>
-            <html lang="en">
-            
-            <body>
-                $navbar
-                    
-                <div class="col-12 mt-2">
-                    $body
-                </div>
-                
-                <!-- FOOTER -->
-                <div class="container align-bottom">
-                
-                      
-                      <footer class="">
-                       
-                        <div id="footer-border"  class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-                          <p>© 2022 Company, Inc. All rights reserved.</p>
-                           
+<!doctype html>
+<html lang="en">
 
-                          <ul class="list-unstyled d-flex">
-                            <li class="ms-3"><a class="" href="login.php"><svg class="bi" width="24" height="24"></svg>login</a></li>
-                            <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"></svg>link</a></li>
-                            <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"></svg>link</a></li>
-                          </ul>
-                        </div>
-                        <img src='../animations/credits.gif' height='500' width='2000' style='height: 100px; position: relative; bottom: 10px; object-fit: cover; z-index: -1;'/>
-                        
-                       
+<body>
+$navbar
+    
+<div class="col-12 mt-2">
+    $body
+</div>
 
-                      </footer>
-                      
-                      
-                </div>
-                <!-- FOOTER end -->
-                
-                 
-                <!-- OFFCANVAS -->
-                <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasWithBothOptionsLabel">
-                  <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Profile</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                  </div>
-                  <div class="offcanvas-body h-100" style="z-index: 10;">
-                  
-                    <!-- Profile info -->
-                    <div id="profile-card" class="card  border-3 mb-5" style="border-radius: 15px;">
-                          <div class="card-title d-flex justify-content-between"> 
-                            <p id="roleSwitch" class="ms-2 mt-2">{$_SESSION['roleSwitch']}</p>
-                            
-                            <a href="../pages/settings.php"  title="Settings" class="btn btn-outline-secondary rounded-circle p-2 mt-1 mr-1"><i class="fa fa-cog"></i></a>
-                           
-                          </div>
-                          <div id="result"></div>
-                                      <div class="card-body text-center justify-content-center align-items-center">
-                                        <div class="mt-3 mb-4">
-                                          <img id="avatar-profile" src="{$avatar}" class="rounded-circle img-fluid mx-auto" style="width: 150px; height: 150px; object-fit: cover;" />
-                                        </div>
-                                        <h4 id="name-profile" class="mb-2">name</h4>
-                                        <p class="text-muted mb-4"><a id="email-profile" href="#!">email</a></p>
-                                       
-                                        <div class="mb-4 pb-2">
-                                          
-                                        </div>
-                                        <button id="dashboardBtn" type="button" class="btn btn-primary btn-rounded btn-lg">
-                                          Go to Dashboard
-                                        </button>
-                                        <div class="d-flex justify-content-between text-center mt-5 mb-2">
-                                          <div>
-                                            <p class="mb-2 h5">8471</p>
-                                            <p class="text-muted mb-0">Wallets Balance</p>
-                                          </div>
-                                          <div class="px-3">
-                                            <p class="mb-2 h5">8512</p>
-                                            <p class="text-muted mb-0">Income amounts</p>
-                                          </div>
-                                          <div>
-                                            <p class="mb-2 h5">4751</p>
-                                            <p class="text-muted mb-0">Total Transactions</p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                    <!-- Profile info end -->
-                              
-                    <!-- Interaction (subscription) -->
-                    <div class="col-md-12 mb-5">
-                            <form>
-                              <h5>Subscribe to our newsletter</h5>
-                              <p>Monthly digest of what's new and exciting from us.</p>
-                              <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                                <label for="newsletter1" class="visually-hidden">Email address</label>
-                                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-                                <button class="btn btn-primary" type="button">Subscribe</button>
-                              </div>
-                            </form>
-                          </div>
-                    <!-- Interaction (subscription) end -->
-                        
-                    <!-- Links -->  
-                    <div class="row">
-                            <div class="col-2 mt-3 text-right">
-                            <h5>Section</h5>
-                            <ul class="nav flex-column">
-                              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-                              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-                              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-                            </ul>
-                          </div>
-                            <img src='../animations/flash.gif' class="col-8 offset-1 mt-5" height='150' width='400' style=' object-fit: fill; z-index: -1;'/>
-                            <div style="position: relative; bottom: 0px" >$label</div>
-                          </div>
-                    <!-- Links end -->  
-                          
-                  </div>
-                        
-                  </div>
-                </div>   
-                
-                <script> 
-                // no need to specify document ready
-                
-                    
-                    // optional: don't cache ajax to force the content to be fresh
-                    $.ajaxSetup ({
-                        cache: false
-                    });
-                
-                    let name = $('#name-profile');
-                    let email = $('#email-profile');
-                    let avatar = $('#avatar-profile');
-                    let card = $('#profile-card');
-                    let roleSwitch = $('#roleSwitch');
-                    let dashBtn = $('#dashboardBtn');
-                    
-                    // specify the server/url you want to load data from
-                    var url = "../process/user_info.php/?id=$userId" ;
-                    
-                    // on NAVBAR MENU click, load the data dynamically
-                    $("#menuBtn").click(function(){
-                        
-                        $("#name-profile").html('loading..').load(url, function (data) {
-                            var response = JSON.parse(data); // Parse the JSON response
-                            console.log(response);
-                             name.html(response.data.name + ' ' + response.data.surname);
-                             email.html(response.data.email);
-                             avatar.attr('src', response.data.avatar_img);
-                             card.css('border-color', response.color);
-                             dashBtn.css('background-color', response.color).click(function () {
-                                        window.location.href = '../pages/dashboard_' + '{$GLOBALS['roleIdToName'][$_SESSION['currentRole']]}' + '.php'
-                                    })
-                             roleSwitch.html(response.switch);
-                             
-                             
-                            $("#roleSelect").on("change", function () {
-                                let role_id = $(this).val();
-                                let roleName = $(`#roleSelect option[value=` + role_id + ']').html();
-                                // $(this).mouseout();
-                                
-                                $.post("../process/set_role.php", { userId: '$userId', roleId: role_id, roleName: roleName}, function (data) {
-                                    var response = JSON.parse(data); // Parse the JSON response
-                                    console.log(response);
-                                    card.css('border-color', response.color);
-                                    dashBtn.css('background-color', response.color).click(function () {
-                                        window.location.href = '../pages/dashboard_' + response.roleName + '.php'
-                                    })
-                                    // $("#role-based-settings-card").css('border-color', response.color);
-                                    $("#logo").css('background-color', response.color);
-                                    $('#footer-border').css('border-color', response.color);
-                                   
-                                    if (window.location.href.includes('dashboard')) {
-                                        var current = window.location.href.split('WAT')[1].split('_')[1].split('.')[0];
-                                         if (window.location.href.split('WAT')[1] === '/pages/dashboard_' + response.roleName + '.php') {
-                                            console.log('right place');
-                                            
-                                            console.log(current);
-                                            $('#' + current + '-dashboard').css('filter', 'blur(0px)');
-                                            $('#' + current + '-warning').fadeOut();
-                                        } else {
-                                            console.log('wrong place');
-                                            console.log(current);
-                                            $('#' + current + '-dashboard').css('filter', 'blur(40px)');
-                                            $('#' + current + '-warning').fadeIn(100);
-                                        }
-                                    } else if (window.location.href.includes('settings')) {  // settings
-                                        setRoleBasedData(parseInt(role_id));
-                                    }
-                                    // location.reload();
-                            })
-                    });
-                        });
-                    });
-         
-          
+<!-- FOOTER -->
+<div class="container align-bottom">
+
+      
+      <footer class="">
+       
+        <div id="footer-border"  class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+          <p>© 2022 Company, Inc. All rights reserved.</p>
+           
+
+          <ul class="list-unstyled d-flex">
+            <li class="ms-3"><a class="" href="login.php"><svg class="bi" width="24" height="24"></svg>login</a></li>
+            <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"></svg>link</a></li>
+            <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"></svg>link</a></li>
+          </ul>
+        </div>
+        <img src='../animations/credits.gif' height='500' width='2000' style='height: 100px; position: relative; bottom: 10px; object-fit: cover; z-index: -1;'/>
         
-                    
-            
-                    
+       
+
+      </footer>
+      
+      
+</div>
+<!-- FOOTER end -->
+
+ 
+<!-- OFFCANVAS -->
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Profile</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body h-100" style="z-index: 10;">
   
-    </script>          
-                  
-                  
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-            </body>
-            </html>
+  <div id="loading-spinner" style="display: none;">
+  <!-- Add your loading spinner HTML code here -->
+  bebra
+</div>
+    <!-- Profile info -->
+    <div id="profile-card" class="card  border-3 mb-5" style="border-radius: 15px;">
+          <div class="card-title d-flex justify-content-between"> 
+            <p id="roleSwitch" class="ms-2 mt-2">{$_SESSION['roleSwitch']}</p>
+            <a href="../pages/settings.php"  title="Settings" class="btn btn-outline-secondary rounded-circle p-2 mt-1 mr-1"><i class="fa fa-cog"></i></a>
+          </div>
+
+      <div class="card-body text-center justify-content-center align-items-center">
+        <div class="mt-3 mb-4">
+          <img id="avatar-profile" src="{$avatar}" class="rounded-circle img-fluid mx-auto" style="width: 150px; height: 150px; object-fit: cover;" />
+        </div>
+        <h4 id="name-profile" class="mb-2">name</h4>
+        <p class="text-muted mb-4"><a id="email-profile" href="#!">email</a></p>
+       
+        <div class="mb-4 pb-2">
+          
+        </div>
+        <button id="dashboardBtn" type="button" class="btn btn-primary btn-rounded btn-lg">
+          Go to Dashboard
+        </button>
+        <div class="d-flex justify-content-between text-center mt-5 mb-2">
+          <div>
+            <p class="mb-2 h5">8471</p>
+            <p class="text-muted mb-0">Wallets Balance</p>
+          </div>
+          <div class="px-3">
+            <p class="mb-2 h5">8512</p>
+            <p class="text-muted mb-0">Income amounts</p>
+          </div>
+          <div>
+            <p class="mb-2 h5">4751</p>
+            <p class="text-muted mb-0">Total Transactions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Profile info end -->
+              
+    <!-- Interaction (subscription) -->
+    <div class="col-md-12 mb-5">
+            <form>
+              <h5>Subscribe to our newsletter</h5>
+              <p>Monthly digest of what's new and exciting from us.</p>
+              <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                <label for="newsletter1" class="visually-hidden">Email address</label>
+                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                <button class="btn btn-primary" type="button">Subscribe</button>
+              </div>
+            </form>
+          </div>
+    <!-- Interaction (subscription) end -->
+        
+    <!-- Links -->  
+    <div class="row">
+            <div class="col-2 mt-3 text-right">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+            </ul>
+          </div>
+            <img src='../animations/flash.gif' class="col-8 offset-1 mt-5" height='150' width='400' style=' object-fit: fill; z-index: -1;'/>
+            <div style="position: relative; bottom: 0px" >$label</div>
+          </div>
+    <!-- Links end -->  
+          
+  </div>
+        
+  </div>
+</div>   
+                
+<script> 
+$(function() {
+  // optional: don't cache AJAX to force the content to be fresh
+  $.ajaxSetup({
+    cache: false
+  });
+
+  let name = $('#name-profile');
+  let email = $('#email-profile');
+  let avatar = $('#avatar-profile');
+  let card = $('#profile-card');
+  var roleSwitch = $('#roleSwitch');
+  let dashBtn = $('#dashboardBtn');
+
+  // Specify the server/url you want to load data from
+  var url = "../process/user_info.php/?id=$userId";
+
+  $(document).on('click', '#menuBtn', function() {
+    // Show the loading spinner
+    $("#loading-spinner").show();
+
+    name.html('loading..').load(url, function(data) {
+      // Hide the loading spinner once the content is loaded
+      $("#loading-spinner").hide();
+
+      var response = JSON.parse(data); // Parse the JSON response
+
+      name.html(response.data.name + ' ' + response.data.surname);
+      email.html(response.data.email);
+      avatar.attr('src', response.data.avatar_img);
+      card.css('border-color', response.color);
+      dashBtn.css('background-color', response.color).click(function() {
+        window.location.href = '../pages/dashboard_' + '{$GLOBALS['roleIdToName'][$_SESSION['currentRole']]}' + '.php'
+      })
+      roleSwitch.html(response.switch);
+
+      
+    });
+  });
+// $("#roleSelect").off("change").on("change", function() {
+  $(document).on('change', '#roleSelect', function () {
+    let role_id = $(this).val();
+    let roleName = $(`#roleSelect option[value=` + role_id + ']').html();
+
+    $('#roleSelect option:eq(' + role_id + ')').prop('selected', true);
+    
+    $.post("../process/set_role.php", {
+      userId: '$userId',
+      roleId: role_id,
+      roleName: roleName
+    }, function(data) {
+      var response = JSON.parse(data); // Parse the JSON response
+
+      roleSwitch.html(response.switch);
+      card.css('border-color', response.color);
+      dashBtn.css('background-color', response.color).click(function() {
+        window.location.href = '../pages/dashboard_' + response.roleName + '.php'
+      });
+
+      $("#logo").css('background-color', response.color);
+      $('#footer-border').css('border-color', response.color);
+
+      if (window.location.href.includes('dashboard')) {
+        var current = window.location.href.split('WAT')[1].split('_')[1].split('.')[0];
+        if (window.location.href.includes(response.roleName)) {
+          $('#' + current + '-dashboard').css({
+            'filter': 'blur(0px)',
+            'pointer-events': 'auto'
+          });
+          $('#' + current + '-warning').fadeOut();
+        } else {
+          $('#' + current + '-dashboard').css({
+            'filter': 'blur(10px)',
+            'pointer-events': 'none'
+          });
+          $('#' + current + '-warning').fadeIn(100);
+        }
+      } else if (window.location.href.includes('settings')) {
+        setRoleBasedData(parseInt(role_id));
+      }
+    });
+  });
+});
+
+</script>          
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
 HTML;
 
 }

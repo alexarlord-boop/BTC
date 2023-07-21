@@ -308,6 +308,8 @@ $error
 </div>
 </div>
 
+<!--<div class="col-12 text-center"><p id="roleSwitch" class="ms-2 mt-2">{$_SESSION['roleSwitch']}</p></div>
+-->
 <script>
 $("#defaultDataForm").submit(function(e) {
 
