@@ -45,7 +45,7 @@ function getProblemCard($eventId, $company, $percent, $fond, $platform, $place, 
             <p class="fs-6 text-primary text-right align-text-bottom">$type</p>
             <p class="fs-4 text-primary text-right align-text-bottom">$name</p>
             <p class="h6 fs-8 pb-4 font-weight-light text-primary text-right">by {$company['name']}</p>
-            <p class="text-primary"><span class="text-secondary">Fund:</span> $fond</p>
+            <p class="text-primary"><span class="text-secondary">Fund:</span> € $fond</p>
             <p class="text-primary"><span class="text-secondary">Compatibility:</span> $percent%</p>
             <div id="text-{$eventId}" class="pt-3" style=" text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">$text</div>
         </div>

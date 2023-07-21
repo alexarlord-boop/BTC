@@ -106,7 +106,7 @@ $allEvents = array(); // Array to store events from all companies
 foreach ($companies as $company) {
     $events = $db->where('company_id', $company['id'])->get('event');
     foreach ($events as &$card) {
-        $card = getProblemCard($card['id'], $company['name'], 10, $card['reward'], $company['country'] . '. ' . $company['city'], $card['place'], $card['description'], $card['name'], 'type', 'primary', $card);
+        $card = getProblemCard($card['id'], $company, 10, $card['reward'], $company['country'] . '. ' . $company['city'], $card['place'], $card['description'], $card['name'], 'type', 'primary', $card);
     }
     $allEvents = array_merge($allEvents, $events);
 }
