@@ -13,6 +13,13 @@ function returnNavBar($pointer) {
     }
 
 
+    $companySaves = '';
+    if ($GLOBALS['roleIdToName'][$_SESSION['currentRole']] == 'company') {
+        $companySaves = '<div class=" rounded-circle border-warning border-5"><i class="fa fa-users"></i><p id="companySaves" class="d-inline badge-warning badge-pill">0</p></div>';
+    }
+
+
+
 
 
     return <<<HTML
@@ -24,6 +31,7 @@ function returnNavBar($pointer) {
               <a href="../pages/{$_SESSION['lnk']}" class="navbar-brand text-primary" style="cursor: pointer;">{$_SESSION['title']}</a>
             </div>
             
+            $companySaves
             <!-- Side menu / profile -->
             <a id="menuBtn" class="btn btn-light mr-3 border " data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
                 <span class="navbar-toggler-icon"></span>
