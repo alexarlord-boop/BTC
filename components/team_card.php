@@ -21,7 +21,7 @@ HTML;
     }
 
     foreach ($members as $member) {
-        if ($_SESSION['userId'] === $member['user_info']['id']) {
+        if ($_SESSION['userId'] === $member['user_info']['id'] && $_SESSION['currentRole'] !== '4') {
             $actionBtn = '<span class="btn mx-1 btn-outline-dark border-2">Edit</span>';
             $usersTeam = true;
             break;

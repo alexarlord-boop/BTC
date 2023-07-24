@@ -86,6 +86,11 @@ function page($navbar, $body) {
     $fullName = $_SESSION['fullName'];
     $avatar = ($_SESSION['avatar'] === "") ? "../img/avatar.jpeg" : $_SESSION['avatar'];
 
+    $settings = ($_SESSION['currentRole'] === '4') ? '' : '<a id="settingsBtn" href="../pages/settings.php"  title="Settings" class="btn btn-outline-secondary rounded-circle p-2 mt-1 mr-1"><i class="fa fa-cog"></i></a>';
+    $dashboardBtn = ($_SESSION['currentRole'] === '4') ? '' : '<button id="dashboardBtn" type="button" class="btn btn-primary btn-rounded btn-lg">
+          Go to Dashboard
+        </button>';
+
     $label = getLabel(0.4);
     return <<<HTML
 <!doctype html>
@@ -141,7 +146,7 @@ $navbar
     <div id="profile-card" class="card  border-3 mb-5" style="border-radius: 15px;">
           <div class="card-title d-flex justify-content-between"> 
             <p id="roleSwitch" class="ms-2 mt-2">{$_SESSION['roleSwitch']}</p>
-            <a href="../pages/settings.php"  title="Settings" class="btn btn-outline-secondary rounded-circle p-2 mt-1 mr-1"><i class="fa fa-cog"></i></a>
+            $settings
           </div>
 
       <div class="card-body text-center justify-content-center align-items-center">
@@ -154,9 +159,7 @@ $navbar
         <div class="mb-4 pb-2">
           
         </div>
-        <button id="dashboardBtn" type="button" class="btn btn-primary btn-rounded btn-lg">
-          Go to Dashboard
-        </button>
+        $dashboardBtn
         <div class="d-flex justify-content-between text-center mt-5 mb-2">
           <div>
             <p class="mb-2 h5">8471</p>
@@ -256,6 +259,13 @@ $(function() {
     let roleName = $(`#roleSelect option[value=` + role_id + ']').html();
 
     $('#roleSelect option:eq(' + role_id + ')').prop('selected', true);
+    document.location.href = "../pages/main.php";
+    /*if (parseInt(role_id) === 4) {
+        document.location.href = "../pages/main.php";
+        $('#settingsBtn').hide();
+    } else {
+         $('#settingsBtn').show();
+    }*/
     
     $.post("../process/set_role.php", {
       userId: '$userId',

@@ -85,12 +85,15 @@ function getRoleSwitch($roles) {
     $html = '<select id="roleSelect">';
     foreach ($roles as $value => $label) {
         if (strval($label) === strval($_SESSION['currentRole'])) {
-            $html .= '<option value="' . $label . '" selected>' . $roleNames[$label] . '</option>';
-        } else {
-            $html .= '<option value="' . $label . '">' . $roleNames[$label] . '</option>';
+            $html .= '<option id="'. $roleNames[$label] . '" value="' . $label . '" selected>' . $roleNames[$label] . '</option>';
+        }
+        else {
+            $html .= '<option id="'. $roleNames[$label] . '" value="' . $label . '">' . $roleNames[$label] . '</option>';
         }
     }
     $html .= '</select>';
+
+
     return $html;
 }
 

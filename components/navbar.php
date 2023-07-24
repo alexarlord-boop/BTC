@@ -18,6 +18,10 @@ function returnNavBar($pointer) {
         $companySaves = '<div class=" rounded-circle border-warning border-5"><i class="fa fa-users"></i><p id="companySaves" class="d-inline badge-warning badge-pill">0</p></div>';
     }
 
+    $color = $GLOBALS['roleIdToColorList'][$_SESSION['currentRole']];
+    $signBtn = ($_SESSION['currentRole'] === '4') ? '<a href="../pages/signup.php" style="color: '. $color .'">Sign in</a>' : '';
+
+
 
 
 
@@ -32,6 +36,7 @@ function returnNavBar($pointer) {
             </div>
             
             $companySaves
+            $signBtn
             <!-- Side menu / profile -->
             <a id="menuBtn" class="btn btn-light mr-3 border " data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
                 <span class="navbar-toggler-icon"></span>
