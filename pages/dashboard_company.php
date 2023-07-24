@@ -24,6 +24,21 @@ $company = $db->where('id', $companyInfoId)->getOne('company_info');
 /* Events Data */
 $events = $db->where('company_id', $company['id'])->get('event');
 //pre($events);
+$alias_business_field = 'business_field';
+$alias_purpose = 'purpose';
+$events_table = 'event';
+$business_field_table = 'business_field';
+$purpose_table = 'purpose';
+$company_id = $company['id'];
+// Construct the join table query
+$db->join($business_field_table, "{$events_table}.business_field_id = {$business_field_table}.id", "LEFT");
+$db->join($purpose_table, "{$events_table}.purpose_id = {$purpose_table}.id", "LEFT");
+$db->where("{$events_table}.company_id", $company_id);
+$events = $db->get($events_table, null, [
+    "{$events_table}.*",
+    "{$business_field_table}.name AS {$alias_business_field}",
+    "{$purpose_table}.name AS {$alias_purpose}"
+]);
 foreach ($events as &$card) {
     $card = getProblemCard($card['id'], $company, 10, $card['reward'],$company['country']. '. ' . $company['city'], $card['place'],  $card['description'], $card['name'], 'type', 'primary', $card, true);
 }

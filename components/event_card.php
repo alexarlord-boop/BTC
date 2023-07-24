@@ -42,9 +42,9 @@ function getProblemCard($eventId, $company, $percent, $fond, $platform, $place, 
             </div>
         </div>
         <div class="card-text h5">
-            <p class="fs-6 text-primary text-right align-text-bottom">$type</p>
+            <p class="fs-6 text-primary text-right align-text-bottom">{$card['business_field']}</p>
             <p class="fs-4 text-primary text-right align-text-bottom">$name</p>
-            <p class="h6 fs-8 pb-4 font-weight-light text-primary text-right">by {$company['name']}</p>
+            <p class="h6 fs-8 pb-4 font-weight-light text-primary text-right">{$card['purpose']} by {$company['name']}</p>
             <p class="text-primary"><span class="text-secondary">Fund:</span> € $fond</p>
             <p class="text-primary"><span class="text-secondary">Compatibility:</span> $percent%</p>
             <div id="text-{$eventId}" class="pt-3" style=" text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">$text</div>
@@ -58,7 +58,7 @@ function getProblemCard($eventId, $company, $percent, $fond, $platform, $place, 
         <div class="modal-content">
             <div class="modal-header">
                 
-                <h5 class="modal-title ms-5" >$name by {$company['name']}</h5>
+                <h5 class="modal-title ms-5" >{$card['purpose']} by {$company['name']}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
@@ -91,31 +91,33 @@ function getProblemCard($eventId, $company, $percent, $fond, $platform, $place, 
             </div>
             <script> 
                 $('#update-event-{$eventId}').on('click', function () {
-                    console.log('update event {$eventId}');
+                    
                     var values = $('#expand-event-{$eventId}').find('.form-control').map((_, el)=> el.value).get();
-                    console.log(values);
+                    
                     
                     const notEmpty = (it) => it !== "";
                     if (values.every(notEmpty)) {
-                                            $.post("../process/update_event.php", {eventId: '$eventId', values: values}, function (data) {
-                        var response = JSON.parse(data);
-                        console.log(response);
-                        
-                        if (response.status === 'success') {
-                            $('#text-{$eventId}').html(values[1]);
-                            $('#success__card').fadeIn(0);
-                            setTimeout(function () {
-                              $('#success__card').fadeOut(500);
-                              }, 5000) // show response from the php script.
-                              $('#success__title').html(response.message);
-                        } else if (response.status === 'error') {
-                             $('#error__card').fadeIn(0);
-                             setTimeout(function () {
-                              $('#error__card').fadeOut(500);
-                              }) // show response from the php script.
-                              $('#error__title').html(response.data);
-                        }
-                    })
+                        $.post("../process/update_event.php", {eventId: '$eventId', values: values}, function (data) {
+                            var response = JSON.parse(data);
+                            
+                            
+                            if (response.status === 'success') {
+                                $('#text-{$eventId}').html(values[1]);
+                                $('#success__card').fadeIn(0);
+                                setTimeout(function () {
+                                  $('#success__card').fadeOut(500);
+                                  }, 5000) // show response from the php script.
+                                  $('#success__title').html(response.message);
+                            } else if (response.status === 'error') {
+                                 $('#error__card').fadeIn(0);
+                                 setTimeout(function () {
+                                  $('#error__card').fadeOut(500);
+                                  }) // show response from the php script.
+                                  $('#error__title').html(response.data);
+                            }
+                    });
+                     
+                    
 
                     } else {
                         $('#error__card').fadeIn(0);
@@ -124,13 +126,18 @@ function getProblemCard($eventId, $company, $percent, $fond, $platform, $place, 
                           $('#error__card').fadeOut(500);
                           }, 5000) // show response from the php script.
                         }
+                    
+          
+                    setTimeout(function () {
+                        document.location.href = '/WAT/pages/dashboard_company.php';
+                    }, 1000);
                 })
                 
                 $('#delete-event-{$eventId}').on('click', function () {
                   
                     $.post("../process/delete_event.php", {eventId: '$eventId', companyId: '{$company["id"]}'}, function (data) {
                         var response = JSON.parse(data);
-                        console.log(response);
+                     
                         
                         if (response.status === 'success') {
                          
@@ -147,6 +154,10 @@ function getProblemCard($eventId, $company, $percent, $fond, $platform, $place, 
                               $('#error__title').html(response.data);
                         }
                     })
+                    
+                    setTimeout(function () {
+                        document.location.href = '/WAT/pages/dashboard_company.php';
+                    }, 1000);
 
 
                 })

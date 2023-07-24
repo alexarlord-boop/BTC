@@ -52,15 +52,15 @@ function getNewEventCard($company): string
             </div>
             <script> 
                 $('#update-event-new').on('click', function () {
-                    console.log('update event new');
+                    
                     var values = $('#expand-event-new').find('.form-control').map((_, el)=> el.value).get();
-                    console.log(values);
+                   
                     
                     const notEmpty = (it) => it !== "";
                     if (values.every(notEmpty)) {
-                                            $.post("../process/create_event.php", {companyId: '{$company["id"]}', values: values}, function (data) {
+                        $.post("../process/create_event.php", {companyId: '{$company["id"]}', values: values}, function (data) {
                         var response = JSON.parse(data);
-                        console.log(response);
+                        
                         
                         if (response.status === 'success') {
                             $('#text-new').html(values[1]);
@@ -76,6 +76,9 @@ function getNewEventCard($company): string
                               }) // show response from the php script.
                               $('#error__title').html(response.data);
                         }
+                        setTimeout(function () {
+                        document.location.href = '/WAT/pages/dashboard_company.php';
+                    }, 1000);
                     })
 
                     } else {
@@ -84,6 +87,10 @@ function getNewEventCard($company): string
                         setTimeout(function () {
                           $('#error__card').fadeOut(500);
                           }, 5000) // show response from the php script.
+                          
+                          setTimeout(function () {
+                        document.location.href = '/WAT/pages/dashboard_company.php';
+                    }, 1000);
                         }
                 })
             </script>
