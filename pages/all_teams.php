@@ -27,7 +27,8 @@ foreach ($teams as &$team) {
 
     $teamMembers = $db->where('team_id', $team['id'])->get('team_member');
     foreach ($teamMembers as &$member) {
-        $db->where('id', $member['member_id']);
+
+        $db->where('user_id', $member['member_id']);
         $mem = $db->getOne('user_member');
         $mem_user = $db->where('id', $mem['user_id'])->getOne('user');
         $mem_info = $db->where('id', $mem['member_info_id'])->getOne('member_info');
@@ -53,7 +54,7 @@ $filter = <<<HTML
 
 
 <div class="d-inline-block col-2 btn border-2">
-<label class="">Likes amount: <span id="likes" class="text-danger">1</span>+</label> <br>
+<label class="">Empathy level: <span id="likes" class="text-danger">1</span>+</label> <br>
 <input type="range" id="likesRange" class="form-range  text-danger p-0 m-0" min="1" max="9" value="1">
 </div>
 
