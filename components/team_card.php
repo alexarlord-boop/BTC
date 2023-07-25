@@ -32,7 +32,7 @@ function add() {
 
     $extra = '';
     if ($usersTeam) {
-        $extra = '<div class="col-md-6 text-primary fs-5 offset-md-3">my team</div>';
+        $extra = '<div class="col-md-2 offset-md-5 text-primary  ">my team</div>';
     }
 
 
@@ -111,13 +111,13 @@ HTML;
 
     return <<<HTML
 
+<div class="card team col-md-8 mb-5 p-3 offset-md-2 rounded-5">
 $extra
-<div class="card col-md-8 mb-5 p-3 offset-md-2 rounded-5">
 <div class="row">
 <div class="card-title col-6 d-flex justify-content-start text-center my-2">
-<span title="likes" class="btn mx-1 border-danger rounded-5 border-2"><i class="far fa-heart"></i> {$team['likes']}</span>
+<span title="likes" class="btn mx-1 border-danger rounded-5 border-2"><i class="far fa-heart"></i> <span class="likesValue">{$team['likes']}</span></span>
 <!--<span title="completed projects" class="btn mx-1 border-primary rounded-5 border-2"><i class="fa fa-hammer"></i> &#45;&#45;</span>-->
-<span title="velocity" class="btn mx-1 border-primary rounded-5 border-2"><i class="fa fa-percent"></i> $teamVelocity</span>
+<span title="velocity" class="btn mx-1 border-primary rounded-5 border-2"><i class="fa fa-percent"></i> <span class="velocityValue">$teamVelocity</span></span>
 $status
 
 </div>

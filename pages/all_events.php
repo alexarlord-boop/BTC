@@ -55,9 +55,10 @@ $events
 HTML;
 
 $filter = <<<HTML
+<p class="my-3"></p>
+<div class="col-12 text-center">
 
-<label for="search" class="ms-5">Search:</label>
-<input type="text" id="search" placeholder="Enter keywords">
+<input type="text" id="search" class="form-control col-2 d-inline-block" placeholder="Enter keywords">
 <span id="clearIcon" class="me-5" style="cursor: pointer;">&#10006;</span>
 
 <select id="business-field">
@@ -74,7 +75,8 @@ $filter = <<<HTML
     <option value="Hackathon">Hackathon</option>
     <option value="Outsource">Outsource</option>
 </select>
-
+</div>
+<p class="my-2"></p>
 
   <script>
     

@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['roles'] = [$user_role_data['role_id']];
                 $_SESSION['avatar'] = $path_avatar;
                 echo "Registration successful!";
-                redirect("../pages/main.php");
+                redirect("../pages/login.php");
 
             } else {
                 // Registration failed
