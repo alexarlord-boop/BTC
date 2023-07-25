@@ -23,6 +23,18 @@ $userData = $db->getOne('user');
 $avatarInput = getImageInput($url=$userData['avatar_img'], 'New image url');
 
 
+/* Member Data */
+
+$db->where('user_id', $_SESSION['userId']);
+$mem = $db->getOne('user_member');
+$infoId = $mem['member_info_id'];
+$mem_user = $db->where('id', $mem['user_id'])->getOne('user');
+$mem_info = $db->where('id', $mem['member_info_id'])->getOne('member_info');
+
+$member = array('user_info'=> $mem_user, 'member_info' => $mem_info);
+
+/* Member Data */
+
 
 
 /* Company Data */
@@ -101,27 +113,134 @@ $("#companyDataForm").submit(function(e) {
 <!-- Company Data END -->
 
 <!-- Team member Data -->
+<style>
+
+input[type="range"] {
+  -webkit-appearance: none;
+  margin-right: 15px;
+  width: 200px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  background-image: linear-gradient(#ff4500, #ff4500);
+  background-size: 70% 100%;
+  background-repeat: no-repeat;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: dodgerblue;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background .3s ease-in-out;
+}
+
+input[type=range]::-webkit-slider-runnable-track  {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: #20c997;
+}
+</style>
 <div id="2" class="role-based-data card col-md-8 offset-md-2 border-3 rounded-4 my-5" style="border-color: {$GLOBALS['roleIdToColorList']['2']}">
 
-<div class="card-title text-center display-6 text-primary mt-4">Team member data</div>
+<div class="card-title text-center display-6 text-primary mt-4">Skills</div>
 <div class="card-body">
-    <form method="post" action="../process/settings_default_process.php">
-        <div class="d-flex">
+    <form id="memberDataForm" method="post" action="../process/settings_member_process.php">
+        <div class="d-flex"> 
             
-        $info         
-         
+        <div class="col-6 p-1 border-right"> 
+            <label for="range1" class="col-4 form-label">Backend</label> <span id="label-1" class="col-2 text-primary">{$mem_info['backend']}</span>%
+            <input type="range" class="col-6  form-range" min="0" max="100" step="1" value="{$mem_info['backend']}" id="range-1">
+           
+            <label for="range2" class="col-4 form-label">Frontend</label> <span id="label-2" class="col-2 text-primary">{$mem_info['frontend']}</span>%
+            <input type="range" class="col-6 form-range" min="0" max="100" step="1" value="{$mem_info['frontend']}" id="range-2">
+           
+            <label for="range3" class="col-4 form-label">Analytics</label> <span id="label-3" class="col-2 text-primary">{$mem_info['analytics']}</span>%
+            <input type="range" class="col-6 form-range" min="0" max="100" step="1" value="{$mem_info['analytics']}" id="range-3">
+        </div> 
+        
+        <div class="col-6 p-1"> 
+            <label for="range4" class="col-4 form-label">Management</label> <span id="label-4" class=" col-2  text-primary">{$mem_info['management']}</span>%
+            <input type="range" class="col-6 form-range" min="0" max="100" step="1" value="{$mem_info['management']}" id="range-4">
+            <label for="range5" class="col-4 form-label">Design</label> <span id="label-5" class="col-2  text-primary">{$mem_info['design']}</span>%
+            <input type="range" class="col-6 form-range" min="0" max="100" step="1" value="{$mem_info['design']}" id="range-5">
+            <label for="range6" class="col-4 form-label">Databases</label> <span id="label-6" class=" col-2 text-primary">{$mem_info['db']}</span>%
+            <input type="range" class="col-6 form-range" min="0" max="100" step="1" value="{$mem_info['db']}" id="range-6">
+        </div>
+        
+        
+        </div>
+        <div class="row text-center mt-3">
+            <div><button type="submit" class="btn btn-outline-primary text-center">Update</button></div>
         </div>
     </form>
 </div>
 <script>
 $(document).ready(function () {
-
+    
+    $('.form-range').each(function () {
+        $(this).on('input', function () {
+            let id = $(this).attr('id').split('-')[1];
+            $('#label-' + id).html($(this).val());
+        })
+    });
+    
+    
     $.get("../process/user_info.php/?id=$id", function (data) {
         var response = JSON.parse(data); // Parse the JSON response
         $("#profile-card").css('border-color', response.color);
         $("#role-based-settings-card").css('border-color', response.color);
         
-    })
+    });
+});
+
+$("#memberDataForm").submit(function(e) {
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+
+    var form = $(this);
+    var actionUrl = form.attr('action');
+    
+    let range1 = $('#range-1');
+    let range2 = $('#range-2');
+    let range3 = $('#range-3');
+    let range4 = $('#range-4');
+    let range5 = $('#range-5');
+    let range6 = $('#range-6');
+    
+    const skills = {
+        'backend': range1.val(),
+        'frontend': range2.val(),
+        'analytics': range3.val(),
+        'management': range4.val(),
+        'design': range5.val(),
+        'db': range6.val()
+    };
+    
+    
+    
+    $.post(actionUrl, {userId: '$id', infoId: '$infoId', skills: skills}, function (data) {
+        var response = JSON.parse(data); // Parse the JSON response
+        console.log(response);
+        
+        if (response.status === 'success') {
+            $('#success__card').fadeIn(0);
+            setTimeout(function () {
+              $('#success__card').fadeOut(500);
+              }, 5000) // show response from the php script.
+              $('#success__title').html(response.message);
+        } else if (response.status === 'error') {
+             $('#error__card').fadeIn(0);
+             setTimeout(function () {
+              $('#error__card').fadeOut(500);
+              }) // show response from the php script.
+              $('#error__title').html(response.data);
+        }
+    });
 });
 </script>
 </div>
