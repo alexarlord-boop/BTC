@@ -22,7 +22,10 @@ $body = "
          
                 <h2>Solve realistic problems.</h2>
                <h2>Save time on arranging events.</h2>
+               <p class='my-5'></p>
+<!--
                <h2>Search enthusiasts and platforms.</h2>
+-->
          
             
             </div>

@@ -24,94 +24,18 @@ $avatarInput = getImageInput($url=$userData['avatar_img'], 'New image url');
 
 
 /* Member Data */
-
 $db->where('user_id', $_SESSION['userId']);
+
 $mem = $db->getOne('user_member');
-$infoId = $mem['member_info_id'];
-$mem_user = $db->where('id', $mem['user_id'])->getOne('user');
-$mem_info = $db->where('id', $mem['member_info_id'])->getOne('member_info');
+if ($mem) {
 
-$member = array('user_info'=> $mem_user, 'member_info' => $mem_info);
+    $infoId = $mem['member_info_id'];
+    $mem_user = $db->where('id', $mem['user_id'])->getOne('user');
+    $mem_info = $db->where('id', $mem['member_info_id'])->getOne('member_info');
 
-/* Member Data */
+    $member = array('user_info' => $mem_user, 'member_info' => $mem_info);
 
-
-
-/* Company Data */
-$companyInfoId = $db->where('user_id', $id)->getOne('user_company')['company_info_id'];
-$companyData = $db->where('id', $companyInfoId)->getOne('company_info');
-/* Company Data */
-
-$roleBasedData = <<<HTML
-<!-- Company Data -->
-<div id="1" class="role-based-data card col-md-8 offset-md-2 border-3 rounded-4 my-5" style="border-color: {$GLOBALS['roleIdToColorList']['1']}">
-
-<div class="card-title text-center display-6 text-primary mt-4">Company data</div>
-<div class="card-body">
-    <form id="companyDataForm" method="post" action="../process/settings_company_process.php">
-        
-            <div class="row"> 
-                <div class="form-outline col-md-4 mb-4">
-                    <input type="text" id="company-name" name="name" class="form-control text-primary"
-                      value="{$companyData['name']}"
-                      placeholder="Your name" required/>
-                    <label class="form-label" for="name">Name</label>
-                  </div>
-                  
-                <div class="form-outline col-md-4 mb-4">
-                <input type="text" id="company-country" name="country" class="form-control text-primary"
-                  value="{$companyData['country']}"
-                  placeholder="Your country"/>
-                <label class="form-label" for="country">Country</label>
-                </div>
-                <div class="form-outline col-md-4 mb-4">
-                <input type="text" id="company-city" name="city" class="form-control text-primary"
-                  value="{$companyData['city']}"
-                  placeholder="Your city"/>
-                <label class="form-label" for="city">City</label>
-              </div>
-            </div>
-            <div class="row text-center mt-3">
-                <div><button type="submit" class="btn btn-outline-primary text-center">Update</button></div>
-            </div>
-    </form>
-</div>
-<script>
-$("#companyDataForm").submit(function(e) {
-
-    e.preventDefault(); // avoid to execute the actual submit of the form.
-
-    var form = $(this);
-    var actionUrl = form.attr('action');
-    
-    let name = form.find('input[name="name"]').val();
-    let country = form.find('input[name="country"]').val();
-    let city = form.find('input[name="city"]').val();
-    
-    
-    $.post(actionUrl, {userId: '$id', name: name, country: country, city: city}, function (data) {
-        var response = JSON.parse(data); // Parse the JSON response
-        console.log(response);
-        
-        if (response.status === 'success') {
-            $('#success__card').fadeIn(0);
-            setTimeout(function () {
-              $('#success__card').fadeOut(500);
-              }, 5000) // show response from the php script.
-              $('#success__title').html(response.message);
-        } else if (response.status === 'error') {
-             $('#error__card').fadeIn(0);
-             setTimeout(function () {
-              $('#error__card').fadeOut(500);
-              }) // show response from the php script.
-              $('#error__title').html(response.data);
-        }
-    });
-});
-</script>
-</div>
-<!-- Company Data END -->
-
+    $memberPart = <<<HTML
 <!-- Team member Data -->
 <style>
 
@@ -245,6 +169,100 @@ $("#memberDataForm").submit(function(e) {
 </script>
 </div>
 <!-- Team member Data END -->
+HTML;
+} else {
+    $memberPart = '';
+}
+/* Member Data */
+
+
+
+/* Company Data */
+$companyInfo = $db->where('user_id', $id)->getOne('user_company');
+if ($companyInfo) {
+
+    $companyInfoId = $companyInfo['company_info_id'];
+    $companyData = $db->where('id', $companyInfoId)->getOne('company_info');
+    $companyPart = <<<HTML
+<!-- Company Data -->
+<div id="1" class="role-based-data card col-md-8 offset-md-2 border-3 rounded-4 my-5" style="border-color: {$GLOBALS['roleIdToColorList']['1']}">
+
+<div class="card-title text-center display-6 text-primary mt-4">Company data</div>
+<div class="card-body">
+    <form id="companyDataForm" method="post" action="../process/settings_company_process.php">
+        
+            <div class="row"> 
+                <div class="form-outline col-md-4 mb-4">
+                    <input type="text" id="company-name" name="name" class="form-control text-primary"
+                      value="{$companyData['name']}"
+                      placeholder="Your name" required/>
+                    <label class="form-label" for="name">Name</label>
+                  </div>
+                  
+                <div class="form-outline col-md-4 mb-4">
+                <input type="text" id="company-country" name="country" class="form-control text-primary"
+                  value="{$companyData['country']}"
+                  placeholder="Your country"/>
+                <label class="form-label" for="country">Country</label>
+                </div>
+                <div class="form-outline col-md-4 mb-4">
+                <input type="text" id="company-city" name="city" class="form-control text-primary"
+                  value="{$companyData['city']}"
+                  placeholder="Your city"/>
+                <label class="form-label" for="city">City</label>
+              </div>
+            </div>
+            <div class="row text-center mt-3">
+                <div><button type="submit" class="btn btn-outline-primary text-center">Update</button></div>
+            </div>
+    </form>
+</div>
+<script>
+$("#companyDataForm").submit(function(e) {
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+
+    var form = $(this);
+    var actionUrl = form.attr('action');
+    
+    let name = form.find('input[name="name"]').val();
+    let country = form.find('input[name="country"]').val();
+    let city = form.find('input[name="city"]').val();
+    
+    
+    $.post(actionUrl, {userId: '$id', name: name, country: country, city: city}, function (data) {
+        var response = JSON.parse(data); // Parse the JSON response
+        console.log(response);
+        
+        if (response.status === 'success') {
+            $('#success__card').fadeIn(0);
+            setTimeout(function () {
+              $('#success__card').fadeOut(500);
+              }, 5000) // show response from the php script.
+              $('#success__title').html(response.message);
+        } else if (response.status === 'error') {
+             $('#error__card').fadeIn(0);
+             setTimeout(function () {
+              $('#error__card').fadeOut(500);
+              }) // show response from the php script.
+              $('#error__title').html(response.data);
+        }
+    });
+});
+</script>
+</div>
+<!-- Company Data END -->
+HTML;
+} else {
+    $companyPart = '';
+}
+
+/* Company Data */
+
+$roleBasedData = $companyPart . $memberPart . <<<HTML
+
+
+
 
 <!-- Admin Data -->
 <div id="3" class="role-based-data card col-md-8 offset-md-2 border-3 rounded-4 my-5" style="border-color: {$GLOBALS['roleIdToColorList']['3']}">

@@ -63,12 +63,12 @@ function add() {
         $memberData .=
             <<<HTML
 <tr>
-          <td>
+          <td colspan="2">
             <div class="d-flex align-items-center">
               <img
                   src="{$member['user_info']['avatar_img']}"
                   alt=""
-                  style="width: 45px; height: 45px"
+                  style="width: 45px; height: 45px; object-fit: cover;"
                   class="rounded-circle"
                   />
               <div class="ms-3">
@@ -143,14 +143,15 @@ table {
 <table class="table align-middle my-3 bg-white"  >
     <thead class="bg-light text-center">
         <tr>
-          <th class="h3">{$team['name']}</th>
+          <th class="h3" colspan="2">{$team['name']}</th>
           <th class="h3"></th>
-          <th>backend</th>
-          <th>frontend</th>
-          <th>analytics</th>
+         
+          <th>Backend</th>
+          <th>Frontend</th>
+          <th>Analytics</th>
           <th>PM</th>
-          <th>design</th>
-          <th>db</th>
+          <th>Design</th>
+          <th>DB</th>
         </tr>
       </thead>
     <tbody>

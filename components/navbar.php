@@ -26,7 +26,7 @@ function returnNavBar($pointer, $includeMenu=true) {
         }
 
         $color = $GLOBALS['roleIdToColorList'][$_SESSION['currentRole']];
-        $signBtn = ($_SESSION['currentRole'] === '4') ? '<div class="col-2 offset-6"><a href="../pages/signup.php" class="me-5" style="color: '. $color .'">Sign up</a></div>' : '';
+        $signBtn = '';
 
 
     }

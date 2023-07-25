@@ -273,7 +273,7 @@ function page($navbar, $body) {
         $fullName = $_SESSION['fullName'];
         $avatar = ($_SESSION['avatar'] === "") ? "../img/avatar.jpeg" : $_SESSION['avatar'];
 
-        $settings = ($_SESSION['currentRole'] === '4') ? '' : '<a id="settingsBtn" href="../pages/settings.php"  title="Settings" class="btn btn-outline-secondary rounded-circle p-2 mt-1 mr-1"><i class="fa fa-cog"></i></a>';
+        $settings = '<a id="settingsBtn" href="../pages/settings.php"  title="Settings" class="btn btn-outline-secondary rounded-circle p-2 mt-1 mr-1"><i class="fa fa-cog"></i></a>';
         $dashboardBtn = ($_SESSION['currentRole'] === '4') ? '' : '<button id="dashboardBtn" type="button" class="btn btn-primary btn-rounded btn-lg">
           Go to Dashboard
         </button>';
