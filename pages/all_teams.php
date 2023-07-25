@@ -9,11 +9,8 @@ require "../utility.php";
 $navbar = returnNavBar(null);
 $title = pageTitle("search", "Teams");
 
-//pre($_SESSION);
+
 /* TEAM DATA */
-
-
-
 
 $teams = $db->get('team');
 

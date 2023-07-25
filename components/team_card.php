@@ -1,8 +1,7 @@
 <?php
 
 function getTeam($team, $members) {
-    /* company -> contact (save) */
-    /* member -> edit (update) specific team */
+
 
     $usersTeam = false;
 
@@ -24,7 +23,8 @@ function add() {
 
     foreach ($members as $member) {
         if (isset($_SESSION['userId']) && $_SESSION['userId'] === $member['user_info']['id'] && $_SESSION['currentRole'] !== '4') {
-            $actionBtn = '<span class="btn mx-1 btn-outline-dark border-2">Edit</span>';
+//            $actionBtn = '<span title="you are not a team leader"  class="btn disabled mx-1 btn-outline-dark border-2">Edit</span>';
+            $actionBtn = '';
             $usersTeam = true;
             break;
         }
@@ -35,9 +35,6 @@ function add() {
         $extra = '<div class="col-md-6 text-primary fs-5 offset-md-3">my team</div>';
     }
 
-//    if ($GLOBALS['roleIdToName'][$_SESSION['currentRole']] == 'member') {
-//        if ($_SESSION['user_id'] )
-//    }
 
 
 
@@ -48,8 +45,20 @@ function add() {
 
 
     $memberData = '';
-
+    $totalWeight = 0;
+    $count = 0;
     foreach ($members as $member) {
+        $memberSkillWeight =
+            $member['member_info']['backend']
+            + $member['member_info']['frontend']
+            + $member['member_info']['analytics']
+            + $member['member_info']['management']
+            + $member['member_info']['design']
+            + $member['member_info']['db'];
+
+        $totalWeight += $memberSkillWeight;
+        $count += 1;
+
 
         $memberData .=
             <<<HTML
@@ -96,7 +105,7 @@ HTML;
 
     }
 
-
+    $teamVelocity = round($totalWeight / $count / 600 * 100);
 
 
 
@@ -108,7 +117,7 @@ $extra
 <div class="card-title col-6 d-flex justify-content-start text-center my-2">
 <span title="likes" class="btn mx-1 border-danger rounded-5 border-2"><i class="far fa-heart"></i> {$team['likes']}</span>
 <!--<span title="completed projects" class="btn mx-1 border-primary rounded-5 border-2"><i class="fa fa-hammer"></i> &#45;&#45;</span>-->
-<span title="velocity" class="btn mx-1 border-primary rounded-5 border-2"><i class="fa fa-percent"></i>{$team['velocity']}</span>
+<span title="velocity" class="btn mx-1 border-primary rounded-5 border-2"><i class="fa fa-percent"></i> $teamVelocity</span>
 $status
 
 </div>

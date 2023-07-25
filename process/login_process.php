@@ -36,6 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['currentRole'] = strval($roleIds[0]); // should be global, for role-base data
             setRoleColor();
 
+            $id = $_SESSION['userId'];
+            $db->where('user_id', $id);
+            $userRoles = $db->get('user_role');
+            $roleIds = getRoleIds($userRoles);
+            $_SESSION['roles'] = $roleIds;
+            $_SESSION['roleSwitch'] = getRoleSwitch($roleIds);
+
             echo "Login successful. Welcome, $email!";
             redirect("../pages/main.php");
         } else {

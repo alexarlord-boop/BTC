@@ -109,7 +109,7 @@ function getOffcanvas($userId, $settings, $avatar, $dashboardBtn, $label ) {
           
         </div>
         $dashboardBtn
-        <div class="d-flex justify-content-between text-center mt-5 mb-2">
+        <!--<div class="d-flex justify-content-between text-center mt-5 mb-2">
           <div>
             <p class="mb-2 h5">8471</p>
             <p class="text-muted mb-0">Wallets Balance</p>
@@ -122,13 +122,13 @@ function getOffcanvas($userId, $settings, $avatar, $dashboardBtn, $label ) {
             <p class="mb-2 h5">4751</p>
             <p class="text-muted mb-0">Total Transactions</p>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
     <!-- Profile info end -->
               
     <!-- Interaction (subscription) -->
-    <div class="col-md-12 mb-5">
+    <!--<div class="col-md-12 mb-5">
             <form>
               <h5>Subscribe to our newsletter</h5>
               <p>Monthly digest of what's new and exciting from us.</p>
@@ -138,19 +138,19 @@ function getOffcanvas($userId, $settings, $avatar, $dashboardBtn, $label ) {
                 <button class="btn btn-primary" type="button">Subscribe</button>
               </div>
             </form>
-          </div>
+          </div>-->
     <!-- Interaction (subscription) end -->
         
     <!-- Links -->  
     <div class="row">
             <div class="col-2 mt-3 text-right">
-            <h5>Section</h5>
+            <h5 class="ms-3">Links</h5>
             <ul class="nav flex-column">
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+              <li class="nav-item mb-2"><a href="../pages/main.php" class="link p-0 text-muted">Main</a></li>
+              <li class="nav-item mb-2"><a href="../pages/all_teams.php" class="link p-0 text-muted">Teams</a></li>
+              <li class="nav-item mb-2"><a href="../pages/all_events.php" class="link p-0 text-muted">Events</a></li>
+              <li class="nav-item mb-2"><a href="../pages/settings.php" class="link p-0 text-muted">Settings</a></li>
+              <li class="nav-item mb-2"><a href="#" class="link p-0 text-muted">About</a></li>
             </ul>
           </div>
             <img src='../animations/flash.gif' class="col-8 offset-1 mt-5" height='150' width='400' style=' object-fit: fill; z-index: -1;'/>
@@ -308,9 +308,11 @@ $navbar
            
 
           <ul class="list-unstyled d-flex">
-            <li class="ms-3"><a class="" href="login.php"><svg class="bi" width="24" height="24"></svg>login</a></li>
+            <li class="ms-3"><a class="" href="login.php"><svg class="bi" width="24" height="24"></svg>Log in</a></li>
+            <li class="ms-3"><a class="" href="../process/logout.php"><svg class="bi" width="24" height="24"></svg>Log out</a></li>
+<!--
             <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"></svg>link</a></li>
-            <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"></svg>link</a></li>
+-->
           </ul>
         </div>
         <img src='../animations/credits.gif' height='500' width='2000' style='height: 100px; position: relative; bottom: 10px; object-fit: cover; z-index: -1;'/>
