@@ -5,23 +5,25 @@ function getTeam($team, $members) {
     /* member -> edit (update) specific team */
 
     $usersTeam = false;
-    $actionBtn = '';
-    if ($GLOBALS['roleIdToName'][$_SESSION['currentRole']] == 'company') {
 
-        $actionBtn = <<<HTML
-    <button onclick="add()" class="btn mx-1 btn-outline-dark border-2">Save</button>
+    if (isset($_SESSION['userId'])) {
+        $actionBtn = ($GLOBALS['roleIdToName'][$_SESSION['currentRole']] == 'company') ?
+            '<button onclick="add()" class="btn mx-1 btn-outline-dark border-2">Save</button>
 <script>
 function add() {
     
-    $('#companySaves').html(1);
+    $("#companySaves").html(1);
 }
-</script>
-HTML;
-
+</script>' : '';
+    } else {
+        $actionBtn = '';
     }
 
+
+
+
     foreach ($members as $member) {
-        if ($_SESSION['userId'] === $member['user_info']['id'] && $_SESSION['currentRole'] !== '4') {
+        if (isset($_SESSION['userId']) && $_SESSION['userId'] === $member['user_info']['id'] && $_SESSION['currentRole'] !== '4') {
             $actionBtn = '<span class="btn mx-1 btn-outline-dark border-2">Edit</span>';
             $usersTeam = true;
             break;

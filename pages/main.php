@@ -5,12 +5,8 @@ include "../components/navbar.php";
 include "../components/ui.php";
 require "../utility.php";
 
-//$_SESSION['userType'] = null;
-$_SESSION['title'] = '';
-$_SESSION['lnk'] = '';
-
 $label = getLabel();
-$navbar = returnNavBar(null);
+
 $title = pageTitle("", "Intro");
 
 $goToCompany = getMainBtn("all_teams.php", "Teams");
@@ -41,6 +37,10 @@ $body = "
 ";
 
 
+
+$navbar = returnNavBar(null);
 echo page($navbar, $body);
+
+
 
 ?>

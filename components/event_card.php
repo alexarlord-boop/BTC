@@ -8,7 +8,11 @@
 
 function getProblemCard($eventId, $company, $percent, $fond, $platform, $place, $text, $name, $type, $color, $card, $companyView=false) {
 // Check the value of the session variable
-    $disabled = $GLOBALS['roleIdToName'][$_SESSION['currentRole']] === 'company' && ($companyView === true);
+    if (isset($_SESSION['userId'])) {
+        $disabled = $GLOBALS['roleIdToName'][$_SESSION['currentRole']] === 'company' && ($companyView === true);
+    } else {
+        $disabled = true;
+    }
 
 // Set the disabled attribute value based on the session variable
     $disabledAttribute = $disabled ? '' : 'disabled';

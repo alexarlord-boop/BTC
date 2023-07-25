@@ -1,26 +1,35 @@
 <?php
 
 
-function returnNavBar($pointer) {
-    $roleColor = $_SESSION['color'];
+function returnNavBar($pointer, $includeMenu=true) {
 
-    if ($pointer == null) {
-        $_SESSION['title'] = '';
-        $_SESSION['lnk'] = '';
+
+
+
+    if (!isset($_SESSION['userId'])) {
+        $roleColor = '#000';
+        $companySaves = '';
+        $sideMenu = '';
+        $signBtn = '<div class="col-4"><a href="../pages/signup.php" class="me-5">Sign in</a>'
+        . '<a href="../pages/login.php" class="me-5">Log in</a></div>';
+
+
     } else {
-        $_SESSION['title']  = '<i class="fa fa-search"></i> ' . $pointer['title'];
-        $_SESSION['lnk']  = $pointer['lnk'];
+        $roleColor = $_SESSION['color'];
+        $sideMenu = '<a id="menuBtn" class="btn btn-light mr-3 border " data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                <span class="navbar-toggler-icon"></span>
+            </a>';
+
+        $companySaves = '';
+        if ($GLOBALS['roleIdToName'][$_SESSION['currentRole']] == 'company') {
+            $companySaves = '<div class=" rounded-circle border-warning border-5"><i class="fa fa-users"></i><p id="companySaves" class="d-inline badge-warning badge-pill">0</p></div>';
+        }
+
+        $color = $GLOBALS['roleIdToColorList'][$_SESSION['currentRole']];
+        $signBtn = ($_SESSION['currentRole'] === '4') ? '<a href="../pages/signup.php" style="color: '. $color .'">Sign in</a>' : '';
+
+
     }
-
-
-    $companySaves = '';
-    if ($GLOBALS['roleIdToName'][$_SESSION['currentRole']] == 'company') {
-        $companySaves = '<div class=" rounded-circle border-warning border-5"><i class="fa fa-users"></i><p id="companySaves" class="d-inline badge-warning badge-pill">0</p></div>';
-    }
-
-    $color = $GLOBALS['roleIdToColorList'][$_SESSION['currentRole']];
-    $signBtn = ($_SESSION['currentRole'] === '4') ? '<a href="../pages/signup.php" style="color: '. $color .'">Sign in</a>' : '';
-
 
 
 
@@ -38,9 +47,7 @@ function returnNavBar($pointer) {
             $companySaves
             $signBtn
             <!-- Side menu / profile -->
-            <a id="menuBtn" class="btn btn-light mr-3 border " data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                <span class="navbar-toggler-icon"></span>
-            </a>
+            $sideMenu
             <!-- Side menu / profile END-->
             
         </nav>

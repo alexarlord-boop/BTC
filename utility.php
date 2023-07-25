@@ -77,59 +77,8 @@ function redirect($url)
 }
 
 
-
-function page($navbar, $body) {
-    $userId = $_SESSION['userId'];
-
-
-    $email = $_SESSION['email'];
-    $fullName = $_SESSION['fullName'];
-    $avatar = ($_SESSION['avatar'] === "") ? "../img/avatar.jpeg" : $_SESSION['avatar'];
-
-    $settings = ($_SESSION['currentRole'] === '4') ? '' : '<a id="settingsBtn" href="../pages/settings.php"  title="Settings" class="btn btn-outline-secondary rounded-circle p-2 mt-1 mr-1"><i class="fa fa-cog"></i></a>';
-    $dashboardBtn = ($_SESSION['currentRole'] === '4') ? '' : '<button id="dashboardBtn" type="button" class="btn btn-primary btn-rounded btn-lg">
-          Go to Dashboard
-        </button>';
-
-    $label = getLabel(0.4);
+function getOffcanvas($userId, $settings, $avatar, $dashboardBtn, $label ) {
     return <<<HTML
-<!doctype html>
-<html lang="en">
-
-<body>
-$navbar
-    
-<div class="col-12 mt-2">
-    $body
-</div>
-
-<!-- FOOTER -->
-<div class="container align-bottom">
-
-      
-      <footer class="">
-       
-        <div id="footer-border"  class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-          <p>© 2022 Company, Inc. All rights reserved.</p>
-           
-
-          <ul class="list-unstyled d-flex">
-            <li class="ms-3"><a class="" href="login.php"><svg class="bi" width="24" height="24"></svg>login</a></li>
-            <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"></svg>link</a></li>
-            <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"></svg>link</a></li>
-          </ul>
-        </div>
-        <img src='../animations/credits.gif' height='500' width='2000' style='height: 100px; position: relative; bottom: 10px; object-fit: cover; z-index: -1;'/>
-        
-       
-
-      </footer>
-      
-      
-</div>
-<!-- FOOTER end -->
-
- 
 <!-- OFFCANVAS -->
 <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasWithBothOptionsLabel">
   <div class="offcanvas-header">
@@ -307,6 +256,78 @@ $(function() {
 
 </script>          
   
+HTML;
+}
+
+
+
+function page($navbar, $body) {
+
+    $menu = '';
+    if (isset($_SESSION['userId'])) {
+
+        $userId = $_SESSION['userId'];
+
+
+        $email = $_SESSION['email'];
+        $fullName = $_SESSION['fullName'];
+        $avatar = ($_SESSION['avatar'] === "") ? "../img/avatar.jpeg" : $_SESSION['avatar'];
+
+        $settings = ($_SESSION['currentRole'] === '4') ? '' : '<a id="settingsBtn" href="../pages/settings.php"  title="Settings" class="btn btn-outline-secondary rounded-circle p-2 mt-1 mr-1"><i class="fa fa-cog"></i></a>';
+        $dashboardBtn = ($_SESSION['currentRole'] === '4') ? '' : '<button id="dashboardBtn" type="button" class="btn btn-primary btn-rounded btn-lg">
+          Go to Dashboard
+        </button>';
+
+        $label = getLabel(0.4);
+
+        $menu =  getOffcanvas($userId, $settings, $avatar, $dashboardBtn, $label );
+    }
+
+
+
+
+    return <<<HTML
+<!doctype html>
+<html lang="en">
+
+<body>
+$navbar
+    
+<div class="col-12 mt-2">
+    $body
+</div>
+
+<!-- FOOTER -->
+<div class="container align-bottom">
+
+      
+      <footer class="">
+       
+        <div id="footer-border"  class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+          <p>© 2022 Company, Inc. All rights reserved.</p>
+           
+
+          <ul class="list-unstyled d-flex">
+            <li class="ms-3"><a class="" href="login.php"><svg class="bi" width="24" height="24"></svg>login</a></li>
+            <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"></svg>link</a></li>
+            <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"></svg>link</a></li>
+          </ul>
+        </div>
+        <img src='../animations/credits.gif' height='500' width='2000' style='height: 100px; position: relative; bottom: 10px; object-fit: cover; z-index: -1;'/>
+        
+       
+
+      </footer>
+      
+      
+</div>
+<!-- FOOTER end -->
+
+
+<!-- MENU -->
+$menu
+<!-- MENU end -->
+
   
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
