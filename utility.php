@@ -368,4 +368,73 @@ function getPointers()
     );
 
 }
+
+function getAllTableHeaders($tableName): array
+{
+    global $db;
+    $columns = $db->rawQuery("SHOW COLUMNS FROM $tableName");
+    $headers = array();
+    foreach ($columns as $column) {
+        $headers[] = $column['Field'];
+    }
+    return $headers;
+}
+
+function getNamesTypesOfTable($tableName, $conn)
+{
+    $columnsQuery = "SHOW COLUMNS FROM $tableName";
+    $columnsResult = $conn->query($columnsQuery);
+
+    $columnDataTypes = array();
+
+    while ($row = $columnsResult->fetch_assoc()) {
+        $columnDataTypes[$row['Field']] = $row['Type'];
+    }
+    return $columnsResult;
+}
+
+function bindWithCorrectType($data, $columnDataTypes) {
+    $bindParams = array();
+    $types = '';
+    foreach ($data as $columnName => $value) {
+        // Convert the value to the appropriate data type based on the column in the database
+        $dataType = $columnDataTypes[$columnName];
+        switch (true) {
+            case strpos($dataType, 'int') !== false:
+                $types .= 'i';
+                $bindParams[] = (int)$value;
+                break;
+            case strpos($dataType, 'float') !== false:
+                $types .= 'd';
+                $bindParams[] = (float)$value;
+                break;
+            case strpos($dataType, 'varchar') !== false:
+            case strpos($dataType, 'char') !== false:
+                $types .= 's';
+                if (stripos($columnName, 'email') !== false) {
+                    $isValidEmail = filter_var($value, FILTER_VALIDATE_EMAIL);
+                    if (!$isValidEmail) {
+                        echo "Invalid email format for '$columnName'.";
+                        return;
+                    }
+                }
+                $bindParams[] = (string)$value;
+                break;
+            case strpos($dataType, 'date') !== false:
+                $types .= 's';
+                $date = DateTime::createFromFormat('Y-m-d', $value);
+                if (!$date || $date->format('Y-m-d') !== $value) {
+                    echo "Invalid date format for '$columnName'. Expected format: 'YYYY-MM-DD'.";
+                    return;
+                }
+                $bindParams[] = $value;
+                break;
+            default:
+                $types .= 's';
+                $bindParams[] = $value;
+                break;
+        }
+    }
+    return array($bindParams, $types);
+}
 ?>

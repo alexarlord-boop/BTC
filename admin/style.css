@@ -1,0 +1,15 @@
+.admin.header {
+    display: flex;
+    justify-content: center;
+}
+
+.admin.header-card-container {
+    display: flex;
+    align-items: flex-start;
+    font-size: x-large;
+    gap: 100px;
+}
+
+.selected-row {
+    background-color: lightblue;
+}

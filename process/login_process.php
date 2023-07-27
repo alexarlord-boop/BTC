@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the email exists in the database
     $db->where('email', $email);
     $user = $db->getOne('user');
+
     if ($user) {
         // Verify the password using password_hash()
         if (password_verify($user_password, trim($user['password']))) {
@@ -25,6 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $db->where('user_id', $userId);
             $userRoles = $db->get('user_role');
             $roleIds = getRoleIds($userRoles);
+
+            $isAdmin = array_reduce($userRoles, function ($carry, $userRole) {
+                return $carry || $userRole['role_id'] === 3;
+            }, false);
 
             session_start();
             $_SESSION['userId'] = $userId;
@@ -44,7 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['roleSwitch'] = getRoleSwitch($roleIds);
 
             echo "Login successful. Welcome, $email!";
-            redirect("../pages/main.php");
+
+            if ($isAdmin) {
+                redirect("../admin/dashboard.php");
+            } else {
+                redirect("../pages/main.php");
+            }
         } else {
             // Login failed
             echo "Login failed. Invalid email or password.\n";
